@@ -1,27 +1,34 @@
+library(data.table)
+
 corr.matched <- function(x, group.name, pre.measure.name, post.measure.name) {
   
 }
 
-x <- confusion
-group.name <- 'subject'
+x.in <- confusion
+group.names <- c('subject', 'atom')
 pre.measure.name <- 'control'
 post.measure.name <- 'treatment'
 
-durkalski.test <- function (x, group.name, pre.measure.name, post.measure.name) {
-  # nk <- nrow(x[pre.measure.name])+ nrow(x[post.measure.name])
-  # group(x, group.name)
-  # 
-  # aggregate(x, by=list(x$subject), FUN=sum)
-  nk <- aggregate(x, by=list(x[[group.name]]), FUN=function(a)2*length(a))[,2]
+durkalski.test <- function (x.in, group.names, pre.measure.name, post.measure.name) {
+  x <- as.data.table(x.in)
+  pre.measure  <- x[[ pre.measure.name]]
+  post.measure <- x[[post.measure.name]]
+
+  groups <- as.list(data.frame(sapply(group.names, function(a) x[[a]])))
   
-  #nk <- Reduce("+", abcd)
+  nk <- x[, .N, by=groups]$N
   
-  bk <- abcd$TF
-  ck <- abcd$FT
+  x[, bs := pre.measure & !post.measure]
+  x[, cs := !pre.measure & post.measure]
+  
+  x[, sum(cs),by=groups]
+  
+  bk <- x[, sum(bs),by=groups]
+  ck <- x[, sum(cs),by=groups]
   
   X2v <- sum( (1/nk)*(bk-ck) )^2/sum(((bk - ck) / nk)^2)
   
   X2v
 }
 
-durkalski.test(confusion, group.name, pre.measure.name, post.measure.name)
+durkalski.test(confusion, group.names, pre.measure.name, post.measure.name)
