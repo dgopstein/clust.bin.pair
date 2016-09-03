@@ -1,32 +1,30 @@
-library(data.table)
+library(dplyr)
+library(lazyeval)
 
 corr.matched <- function(x, group.name, pre.measure.name, post.measure.name) {
   
 }
 
-x.in <- confusion
+x <- confusion
 group.names <- c('subject', 'atom')
 pre.measure.name <- 'control'
 post.measure.name <- 'treatment'
 
-durkalski.test <- function (x.in, group.names, pre.measure.name, post.measure.name) {
-  x <- as.data.table(x.in)
-  pre.measure  <- x[[ pre.measure.name]]
-  post.measure <- x[[post.measure.name]]
+results.to.contingency.cols <- function(x, group.names, pre.measure.name, post.measure.name) {
+  x %>%
+    group_by_(.dots = group.names) %>%
+    summarize_(
+      nk = ~n(),
+      ak = interp(~sum( pre &  post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
+      bk = interp(~sum( pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
+      ck = interp(~sum(!pre &  post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
+      dk = interp(~sum(!pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)))
+}
 
-  groups <- as.list(data.frame(sapply(group.names, function(a) x[[a]])))
+durkalski.test <- function (x, group.names, pre.measure.name, post.measure.name) {
+  z <- results.to.contingency.cols(x, group.names, pre.measure.name, post.measure.name)
   
-  nk <- x[, .N, by=groups]$N
-  
-  x[, bs := pre.measure & !post.measure]
-  x[, cs := !pre.measure & post.measure]
-  
-  x[, sum(cs),by=groups]
-  
-  bk <- x[, sum(bs),by=groups]
-  ck <- x[, sum(cs),by=groups]
-  
-  X2v <- sum( (1/nk)*(bk-ck) )^2/sum(((bk - ck) / nk)^2)
+  X2v <- sum( (1/z$nk)*(z$bk-x1$ck) )^2/sum(((z$bk - z$ck) / z$nk)^2 )
   
   X2v
 }
