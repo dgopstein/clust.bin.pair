@@ -2,10 +2,12 @@
 
 obuchowski.test <- function(x, group.names, pre.measure.name, post.measure.name) {
   z <- results.to.contingency.cols(x, group.names, pre.measure.name, post.measure.name)
-  obuchowski.impl(z$bk, z$ck, z$nk, nrow(z))
+  obuchowski.impl(z$ak + z$bk, z$ak + z$ck, z$nk)
 }
 
-obuchowski.impl <- function(x1, x2, N, m) {
+obuchowski.impl <- function(x1, x2, N) {
+  m <- length(x1)
+
   # Eqn (1)
   p.hat <- function(x, N) sum(x) / sum(N)
   
