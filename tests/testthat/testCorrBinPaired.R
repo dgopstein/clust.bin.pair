@@ -8,6 +8,10 @@ post.measure.name <- 'treatment'
 
 abcd.data <- results.to.contingency.cols(confusion, group.names, pre.measure.name, post.measure.name)
 
+test_that("McNemar scores datasets correctly", { 
+  expect_equal(mcnemars(disagreements$bh, disagreements$ch), 11.85, tolerance=.1, scale=NULL, "disagreements")
+}) 
+
 test_that("clustered methods are same order as McNemars", {
   mcnemar.chi2 <- mcnemars(abcd.data$bk, abcd.data$ck)
   durkalski.chi2  <-  durkalski.test(confusion, group.names, pre.measure.name, post.measure.name)

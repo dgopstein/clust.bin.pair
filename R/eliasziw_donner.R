@@ -26,18 +26,24 @@ eliasziw1.impl <-function (bk, ck) {
   
   S.bar <- (1/Kd) * sum(Sk)
   
-  S0 <- S.bar - sum((Sk - S.bar)^2 - (K - Kd)*(S.bar^2)) / (Kd * (Kd - 1) * S.bar)
+  S0 <- S.bar - (sum((Sk - S.bar)^2) - (K - Kd)*(S.bar^2)) / (Kd * (Kd - 1) * S.bar)
   
-  BMS <- (1/Kd) * sum( ifelse(Sk >= 1, (( bk - Sk*p.bar )^2 / Sk), 0) )
+  BMS <- (1/Kd) * sum( ifelse(Sk >= 1, ((( bk - Sk*p.bar )^2) / Sk), 0) )
   WMS <- (1/(Kd * (S.bar - 1))) * sum( ifelse(Sk >= 1, (( bk * (Sk - bk) ) / Sk), 0) )
   
   rho.hat <- (BMS - WMS) / (BMS + (S0 - 1)*WMS)
   
   nc <- S0 + Kd*(S.bar - S0)
   
-  X2di <- mcnemars(bk, ck) / (1 + (nc - 1) * rho.hat)
+  X2m <- mcnemars(bk, ck)
   
-  X2di
+  C.hat <- (1 + (nc - 1) * rho.hat)
+  
+  assertthat::are_equal((1 + (nc - 1) * rho.hat), sum(Sk*(1+(Sk - 1)*rho.hat)) / sum(Sk))
+  
+  X2ma <- X2m / C.hat
+  
+  X2ma
 }
 
 
@@ -95,3 +101,9 @@ eliasziw2 <- function (abcd) {
   
   X2di
 }
+
+abcd.nk <- Reduce('+', abcd)
+mcnemars(abcd$TF, abcd$FT)
+durkalski.impl(abcd.nk, abcd$TF, abcd$FT)
+eliasziw1.impl(abcd$TF, abcd$FT)
+eliasziw2(abcd)
