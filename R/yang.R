@@ -32,13 +32,18 @@ yang.obuchowski.impl <- function (ak, bk, ck, dk) {
   
   var.hat.diff <- var.hat1 + var.hat2 - 2*cov.hat
   
-  X2o <- (p1.hat - p2.hat)^2 / var.hat.diff
+  X2o.original <- (p1.hat - p2.hat)^2 / var.hat.diff
+  X2o.simplified <- ((K -1) / K) * sum(bk - ck)^2 / sum((bk - ck)^2)
+  
+  assert_that(are_equal(X2o.original, X2o.simplified))
   
   dput(X2o)
   dput(obuchowski.impl(x1k, x2k, nk))
   
   assert_that(are_equal(X2o, obuchowski.impl(x1k, x2k, N)))
 }
+
+
 
 ak <- abcd$ak
 bk <- abcd$bk
