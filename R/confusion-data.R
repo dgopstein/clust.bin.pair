@@ -24,6 +24,5 @@
 #'
 #' @examples
 #' data(confusion)
-#' confusion <- attr(grav, "obfuscated")
-#' subjects <- grav$subjects
+#' confusion$control
 "confusion"

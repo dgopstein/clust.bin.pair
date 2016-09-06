@@ -18,4 +18,7 @@ results.to.contingency.cols <- function(x, group.names, pre.measure.name, post.m
 }
 
 # devtools::test()
+disagreements <- read.csv("../disagreements.csv")
+disagreements$Wh <- round((disagreements$bh - disagreements$ch) / disagreements$Nh, 2)
 
+devtools::use_data(disagreements)
