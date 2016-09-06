@@ -37,10 +37,7 @@ yang.obuchowski.impl <- function (ak, bk, ck, dk) {
   
   assert_that(are_equal(X2o.original, X2o.simplified))
   
-  dput(X2o)
-  dput(obuchowski.impl(x1k, x2k, nk))
-  
-  assert_that(are_equal(X2o, obuchowski.impl(x1k, x2k, N)))
+  X2o.simplified
 }
 
 

@@ -38,10 +38,10 @@ test_that("durkalski works with various input", {
 })
 
 test_that("obuchowski works with various input", {
-  obuchowski.res <- 11.27761
+  obuchowski.res <- 9.627329
   
   obuchowski.chi2.ungrouped <- obuchowski.test(confusion, group.names, pre.measure.name, post.measure.name)
-  obuchowski.chi2.abcd      <- obuchowski.impl(abcd.data$ak + abcd.data$bk, abcd.data$ak + abcd.data$ck, abcd.data$nk)
+  obuchowski.chi2.abcd      <- obuchowski.impl(abcd.data$ak, abcd.data$bk, abcd.data$ck, abcd.data$dk)
   
   expect_equal(obuchowski.chi2.ungrouped, obuchowski.res, tolerance = 0.01, scale = NULL, "ungrouped column input")
   expect_equal(obuchowski.chi2.abcd,      obuchowski.res, tolerance = 0.01, scale = NULL, "abcd column input")

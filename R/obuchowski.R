@@ -1,39 +1,45 @@
-# An implementation of Obuchowski 1998
+# An implementation of Obuchowski 1998, using the notation of Yang 2010
 
 obuchowski.test <- function(x, group.names, pre.measure.name, post.measure.name) {
   z <- results.to.contingency.cols(x, group.names, pre.measure.name, post.measure.name)
-  obuchowski.impl(z$ak + z$bk, z$ak + z$ck, z$nk)
+  obuchowski.impl(z$ak, z$bk, z$ck, z$dk)
 }
 
-# x1 <- z$ak + z$bk
-# x2 <- z$ak + z$ck
-# N <- z$nk
-
-obuchowski.impl <- function(x1, x2, N) {
-  m <- length(x1)
-
-  # Eqn (1)
-  p.hat <- function(x, N) sum(x) / sum(N)
+obuchowski.impl <- function (ak, bk, ck, dk) {
+  nk <- ak + bk + ck + dk
+  N <- sum(nk)
   
-  # Eqn (2)
-  var.hat <- function(x, N, m)
-    m * (m-1)^-1 * sum( (x - (N * p.hat(x, N)))^2 ) / sum(N)^2
+  x1k <- ak + bk
+  x2k <- ak + ck
   
-  # # Eqn (3)
-  # cov.hat <- function(x1, x2, N, m)
-  #   m * (m-1)^-1 * sum( (x1 - (N * p.hat(x1, N))) * (x2 - (N * p.hat(x2, N))) ) / sum(N)^2
+  p1.hat <- (1/N) * sum(ak + bk)
+  p2.hat <- (1/N) * sum(ak + ck)
   
-  p.bar <- function(x1, x2, N)
-    (p.hat(x1, N) + p.hat(x2, N)) / 2
+  assert_that(are_equal(p1.hat, sum(x1k) / sum(nk)))
+  assert_that(are_equal(p2.hat, sum(x2k) / sum(nk)))
   
-  # Eqn (7)
-  cov.hat.p.bar <- function (x1, x2, N, m)
-    m * (m-1)^-1 * sum( (x1 - (N * p.bar(x1, x2, N))) * (x2 - (N * p.bar(x1, x2, N))) ) / sum(N)^2
+  p.bar <- (p1.hat + p2.hat) / 2
   
-  # Eqn (4)
-  var.hat.diff <- function(x1, x2, N, m)
-    var.hat(x1, N, m) + var.hat(x2, N, m) - 2 * cov.hat.p.bar(x1, x2, N, m)
+  assert_that(are_equal(p.bar, (1/(2*N)) * sum(2*ak + bk + ck) ))
   
-  # Eqn (6)
-  ((p.hat(x1, N) - p.hat(x2, N))^2) / var.hat.diff(x1, x2, N, m)
+  p1.tilde <- (1 / N) * sum(bk)
+  p2.tilde <- (1 / N) * sum(ck)
+  p.tilde <- (1 / (2 * N)) * sum(bk + ck)
+  
+  assert_that(are_equal( p1.hat - p2.hat, p1.tilde - p2.tilde) )
+  assert_that(are_equal( p1.hat - p2.hat, (1 / N) * sum(bk - ck) ))
+  
+  cov.hat <- (K / (K - 1)) * ( (1 / N^2) * sum((x1k - (nk * p.bar)) * (x2k - (nk * p.bar))) )
+  
+  var.hat1 <- (K / (K - 1)) * ( (1 / N^2) * sum( (x1k - (nk * p.bar))^2 ) )
+  var.hat2 <- (K / (K - 1)) * ( (1 / N^2) * sum( (x2k - (nk * p.bar))^2 ) )
+  
+  var.hat.diff <- var.hat1 + var.hat2 - 2*cov.hat
+  
+  X2o.original <- (p1.hat - p2.hat)^2 / var.hat.diff
+  X2o.simplified <- ((K -1) / K) * sum(bk - ck)^2 / sum((bk - ck)^2)
+  
+  assert_that(are_equal(X2o.original, X2o.simplified))
+  
+  X2o.simplified
 }
