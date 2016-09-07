@@ -54,3 +54,14 @@ test_that("eliasziw works with various input", {
   expect_equal(eliasziw.chi2.ungrouped, eliasziw.res, tolerance = 0.01, scale = NULL, "ungrouped column input")
   expect_equal(eliasziw.chi2.abcd,      eliasziw.res, tolerance = 0.01, scale = NULL, "abcd column input")
 })
+
+context("Monte Carlo Simulations")
+
+test_that("Data is generated with proper parameters", {
+  generate.clusters(clusters = 20, cluster.size = 1:5, icc = .3)
+  
+  # there are the right number of clusters
+  # the clusters are the right size
+  # each cluster has the appropriate icc
+  # each cluster is independent from one another
+})
