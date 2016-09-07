@@ -17,14 +17,12 @@ test_that("clustered methods are same order as McNemar", {
   durkalski.chi2  <-  durkalski.test(confusion, group.names, pre.measure.name, post.measure.name)
   obuchowski.chi2 <- obuchowski.test(confusion, group.names, pre.measure.name, post.measure.name)
   eliasziw.chi2   <-   eliasziw.test(confusion, group.names, pre.measure.name, post.measure.name)
-  
-  d.diff  <- abs(mcnemar.chi2 - durkalski.chi2 ) / mcnemar.chi2
-  o.diff  <- abs(mcnemar.chi2 - obuchowski.chi2) / mcnemar.chi2
-  e.diff  <- abs(mcnemar.chi2 - eliasziw.chi2  ) / mcnemar.chi2
-  
-  expect_lt(d.diff,  .2, "Durkalski and McNemar are relatively close")
-  expect_lt(o.diff,  .2, "Obuchowski and McNemar are relatively close")
-  expect_lt(e.diff,  .2, "Eliasziw and McNemar are relatively close")
+  yang.chi2       <-       yang.test(confusion, group.names, pre.measure.name, post.measure.name)
+
+  expect_equal(mcnemar.chi2, durkalski.chi2,  tolerance = .2, scale = NULL, "Durkalski and McNemar are relatively close")
+  expect_equal(mcnemar.chi2, obuchowski.chi2, tolerance = .2, scale = NULL, "Obuchowski and McNemar are relatively close")
+  expect_equal(mcnemar.chi2, eliasziw.chi2,   tolerance = .2, scale = NULL, "Eliasziw and McNemar are relatively close")
+  expect_equal(mcnemar.chi2, yang.chi2,       tolerance = .2, scale = NULL, "Yang and McNemar are relatively close")
 })
 
 test_that("durkalski works with various input", {
@@ -41,7 +39,7 @@ test_that("obuchowski works with various input", {
   obuchowski.res <- 9.627329
   
   obuchowski.chi2.ungrouped <- obuchowski.test(confusion, group.names, pre.measure.name, post.measure.name)
-  obuchowski.chi2.abcd      <- obuchowski.impl(abcd.data$ak, abcd.data$bk, abcd.data$ck, abcd.data$dk)
+  obuchowski.chi2.abcd      <- obuchowski.impl(abcd.data$nk, abcd.data$bk, abcd.data$ck)
   
   expect_equal(obuchowski.chi2.ungrouped, obuchowski.res, tolerance = 0.01, scale = NULL, "ungrouped column input")
   expect_equal(obuchowski.chi2.abcd,      obuchowski.res, tolerance = 0.01, scale = NULL, "abcd column input")

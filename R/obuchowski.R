@@ -2,10 +2,10 @@
 
 obuchowski.test <- function(x, group.names, pre.measure.name, post.measure.name) {
   z <- results.to.contingency.cols(x, group.names, pre.measure.name, post.measure.name)
-  obuchowski.impl(z$ak, z$bk, z$ck, z$dk)
+  obuchowski.impl(z$nk, z$bk, z$ck)
 }
 
-obuchowski.impl <- function (ak, bk, ck, dk) {
+obuchowski.impl <- function (nk, bk, ck) {
   K <- length(nk)
 
   ((K - 1) / K) * sum(bk - ck)^2 / sum((bk - ck)^2)
