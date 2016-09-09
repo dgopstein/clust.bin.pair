@@ -4,17 +4,17 @@ Statistical tools for analyzing clustered binary matched-pair data
 
 ### Correlated Binary Matched-Pair
 
-The tests and tools included in this package work primarily on correlated binary matched-pair (or proportion) data.
+The tests and tools included in this package work primarily on correlated binary matched-pair data. In order for data to be a good fit for analysis with these tools it needs to have the following three properties:
 
-- **Correlated** (aka *clustered*, *non-independent*): Multiple samples are drawn from the same distribution. 
+- **Correlated** (aka *clustered*, *non-independent*): Multiple samples drawn from the same distribution. 
  - i.e. Measure multiple teeth from each of several dental patients. The teeth of one patient are more likely to be similar than the teeth of different patients.
-- **Binary** (aka *dichotomous*): The results are dichotomous.
+- **Binary** (aka *dichotomous*): Results that are dichotomous.
  - i.e. the values may be true/false, yes/no, success/failure, missing/present, etc.
-- **Matched-pair**: The data comes in pairs, often from successive trials in a repeated measures experiment or from measuring two different sources.
+- **Matched-pair**: Data points that come in pairs. Often from successive trials in a repeated measures experiment or from measuring two different sources.
  - i.e. eyes measured before and after surgery or the opinions of a doctor and her patient on the patient's progress.
 
 ### Tests
-This package contains 5 statistical suitable for analyzing correlated binary matched-pair data in various contexts. Four of the tests are designed specifically for this type of data. The fifth test, *mcnemar* is the conceptual predecessor to each of the other tests, and is included for comparison, though it is specifically noted to be unsuitable for clustered data. The tests are listed below, along with the articles which introduce them:
+This package contains 5 statistical tests suitable for analyzing correlated binary matched-pair data in various contexts. Four of the tests are designed specifically for this type of data. The fifth test, McNemar's test is the conceptual predecessor to each of the other tests, and is included for comparison. In practice, McNemar's test is specifically noted to be unsuitable for clustered data. The tests are listed below, along with the articles which introduce them:
 
 - **McNemar**:
 [McNemar, Quinn. 1947. "Note on the sampling error of the difference between correlated proportions or percentages." *Psychometrika*.]
@@ -34,7 +34,7 @@ This package contains 5 statistical suitable for analyzing correlated binary mat
 
 ### Datasets
 
-Included is sample data from real world experiments of the form that can benefit from the application of these tests.
+Included is sample data from real world experiments of the form that can benefit from the application of these tests:
 
 - **Confusion**: The results of programmers hand-evaluating pairs of obfuscated and deobfuscated snippets of C source code.
 - **Disagreements**
@@ -42,4 +42,4 @@ Included is sample data from real world experiments of the form that can benefit
 
 ### Simulation and Evaluation
 
-The canonical method of evaluating the performance of these types of test is through the application of Monte Carlo sampling. This package includes several functions to generate sample data, and measure the performance of the tests against that data.
+The canonical method of evaluating the performance of these types of test is through the application of Monte Carlo sampling. This package includes several functions to generate sample data and measure the performance of the tests against that data.
