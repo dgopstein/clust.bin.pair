@@ -29,7 +29,7 @@ This package contains 5 statistical tests suitable for analyzing correlated bina
 [Durkalski, Valerie L., Yuko Y. Palesch, Stuart R. Lipsitz, and Philip F. Rust. 2003. "Analysis of clustered matched‐pair data." *Statistics in medicine*.]
 (http://onlinelibrary.wiley.com/doi/10.1002/sim.1438/full)
 - **Yang**:
-[Yang, Zhao, Xuezheng Sun, and James W. Hardin. 2010. "A note on the tests for clustered matched‐pair binary data." Biometrical journal.]
+[Yang, Zhao, Xuezheng Sun, and James W. Hardin. 2010. "A note on the tests for clustered matched‐pair binary data." *Biometrical journal*.]
 (http://onlinelibrary.wiley.com/doi/10.1002/bimj.201000035/full)
 
 ### Datasets
