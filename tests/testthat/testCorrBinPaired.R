@@ -57,6 +57,14 @@ test_that("eliasziw works with various input", {
 
 context("Monte Carlo Simulations")
 
+test_that("Correlation matrix generation works", {
+  cor6 <- matrix(c(1,10,10,3,4,4,10,1,10,4,3,4,10,10,1,4,4,3,3,4,4,1,2,2,4,3,4,2,1,2,4,4,3,2,2,1), nrow=6, ncol=6)
+  cor8 <- matrix(c(1,10,10,10,3,4,4,4,10,1,10,10,4,3,4,4,10,10,1,10,4,4,3,4,10,10,10,1,4,4,4,3,3,4,4,4,1,2,2,2,4,3,4,4,2,1,2,2,4,4,3,4,2,2,1,2,4,4,4,3,2,2,2,1), nrow=8, ncol=8)
+  
+  expect_equal(cor6, cor.structure(6, 10, 2, 3, 4))
+  expect_equal(cor8, cor.structure(8, 10, 2, 3, 4))
+})
+
 test_that("Data is generated with proper parameters", {
   generate.clusters(clusters = 20, cluster.size = 1:5, icc = .3)
   
