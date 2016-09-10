@@ -29,14 +29,17 @@ cor.structure <- function(nk, r1, r2, r3, r4) {
 # Take floating point values, normally distributed about 0 and convert
 # them to 1/0 with p being the probability of the value being 1
 dichotomize <- function(values, p) {
-  cutpoint <- qnorm(p)
+  cutpoint <- qnorm(p1)
   (values < cutpoint) * 1
 }
 
 # r4 <- r3 <- 0.5 * (r2 <- r1 <- 0.9)
 nk <- 8 # cluster size
-p <- 0.45 # probability of getting a success (cutpoint)
-generate.clusters <- function(K, nk, p, r1, r2, r3, r4) {
+p1 <- 0.5 # probability of getting a success (cutpoint)
+p2 <- 0.6
+generate.clusters <- function(K, nk, p1, p2, r1, r2, r3, r4) {
+  n2 <- nk/2
+  
   cor.mat <- cor.structure(nk, r1, r2, r3, r4)
   
   # as long as the standard deviation of each element is 1
@@ -47,7 +50,7 @@ generate.clusters <- function(K, nk, p, r1, r2, r3, r4) {
   rtrials <- mvrnorm(K, mu=rep(0, ncol(cov.mat)), Sigma=cov.mat)
   
   # coerce each variable to binary with success probability p
-  dtrials <- dichotomize(rtrials, p)
+  dtrials <- cbind(dichotomize(rtrials[,1:n2], p1), dichotomize(rtrials[,(n2+1):nk], p2))
   
   # add group names
   gtrials <- data.frame(cbind(cluster = 1:nrow(dtrials)), dtrials)
@@ -63,7 +66,7 @@ generate.clusters <- function(K, nk, p, r1, r2, r3, r4) {
   trials
 }
 
-clusters <- generate.clusters(K=1e4, nk=6, p=0.5, r1=.9, r2=.9, r3=.4, r4=.4)
+clusters <- generate.clusters(K=1e4, nk=6, p1=0.49999, p2=0.500001, r1=.9, r2=.9, r3=.4, r4=.4)
 
 cnt <- results.to.contingency.cols(x = clusters, group.names = "cluster", pre.measure.name = "t1", post.measure.name = "t2")
 bk <- cnt$bk
