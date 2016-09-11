@@ -1,11 +1,5 @@
 # Eliasziw & Donner 1991
 
-mcnemar <- function(bk, ck) {
-  b <- sum(bk)
-  c <- sum(ck)
-  (b - c)^2/(b + c)
-}
-
 eliasziw.test <- function (x, group.names, pre.measure.name, post.measure.name) {
   z <- results.to.contingency.cols(x, group.names, pre.measure.name, post.measure.name)
   
