@@ -19,9 +19,6 @@ test_that("clustered methods are same order as McNemar", {
   eliasziw.chi2   <-   eliasziw.test(confusion, group.names, pre.measure.name, post.measure.name)
   yang.chi2       <-       yang.test(confusion, group.names, pre.measure.name, post.measure.name)
 
-  dput(mcnemar.chi2)
-  dput(yang.chi2)
-  
   expect_equal(mcnemar.chi2, durkalski.chi2,  tolerance = .2, scale = NULL, "Durkalski and McNemar are relatively close")
   expect_equal(mcnemar.chi2, obuchowski.chi2, tolerance = .2, scale = NULL, "Obuchowski and McNemar are relatively close")
   expect_equal(mcnemar.chi2, eliasziw.chi2,   tolerance = .2, scale = NULL, "Eliasziw and McNemar are relatively close")
