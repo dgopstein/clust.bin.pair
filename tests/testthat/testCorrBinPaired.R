@@ -19,6 +19,9 @@ test_that("clustered methods are same order as McNemar", {
   eliasziw.chi2   <-   eliasziw.test(confusion, group.names, pre.measure.name, post.measure.name)
   yang.chi2       <-       yang.test(confusion, group.names, pre.measure.name, post.measure.name)
 
+  dput(mcnemar.chi2)
+  dput(yang.chi2)
+  
   expect_equal(mcnemar.chi2, durkalski.chi2,  tolerance = .2, scale = NULL, "Durkalski and McNemar are relatively close")
   expect_equal(mcnemar.chi2, obuchowski.chi2, tolerance = .2, scale = NULL, "Obuchowski and McNemar are relatively close")
   expect_equal(mcnemar.chi2, eliasziw.chi2,   tolerance = .2, scale = NULL, "Eliasziw and McNemar are relatively close")
@@ -65,11 +68,29 @@ test_that("Correlation matrix generation works", {
   expect_equal(cor8, cor.structure(8, 10, 2, 3, 4))
 })
 
+test_that("Utility functions works", {
+  expect_true(same.length(c(1, 2), c(3, 4)))
+  expect_false(same.length(c(1), c(3, 4)))
+  expect_false(same.length(c(), c(3)))
+  expect_true(same.length(c(), c()))
+})
+
 test_that("Data is generated with proper parameters", {
-  generate.clusters(clusters = 20, cluster.size = 1:5, icc = .3)
+  K <- 15;
+  nk <- 2;
+  p1k <- p2k <- seq(from=0.05, by=0.05, to=0.85);
+  r1s <- r2s <- c(0.1, 0.4, 0.8);
+  r3s <- rep(0.5, length(r1s));
+  r4s <- r1s / 2
   
-  # there are the right number of clusters
-  # the clusters are the right size
+  clusters <- generate.clusters(K=K, nk=nk, p1s=p1k, p2s=p2k, r1s=r1s, r2s=r2s, r3s=r3s, r4s=r4s)
+  
+  n.scenarios <- length(p1k) * length(r1)
+  expect_equal(n.scenarios, length(clusters))
+  
+  n.samples <- K * nk
+  expect_equal(n.samples, nrow(clusters[[1]]))
+
   # each cluster has the appropriate icc
   # each cluster is independent from one another
 })
