@@ -1,4 +1,4 @@
-#' C code misinterpretation data
+#' Pyschiatrist and patient disagreement data
 #'
 #' Reported by Petryshen, described by Eliasziw as follows:
 #' Disagreements between patients and psychiatrists on check-listed items
@@ -18,7 +18,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(disagreements)
+#' @usage data(psychiatry)
 #'
 #' @format A data frame with 29 rows and 7 variables:
 #' \describe{
@@ -39,6 +39,6 @@
 #' @source Petryshen
 #'
 #' @examples
-#' data(disagreements)
-#' disagreements$Wh == round((disagreements$bh - disagreements$ch) / disagreements$Nh, 2)
-"disagreements"
+#' data(psychiatry)
+#' psychiatry$Wh == round((psychiatry$bh - psychiatry$ch) / psychiatry$Nh, 2)
+"psychiatry"

@@ -1,4 +1,4 @@
-#' C code misinterpretation data
+#' Obfuscated C code misinterpretation data
 #'
 #' Data from Gopstein et. al.'s experiment on the misinterpretation of C code.
 #' Subjects were asked to hand evaluate pairs of functionally equivalent code.
@@ -6,7 +6,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(confusion)
+#' @usage data(obfuscation)
 #'
 #' @format A data frame with 57 rows and 4 variables:
 #' \describe{
@@ -23,6 +23,6 @@
 #' @source \href{http://atomsofconfusion.com}{Atoms of Confusion}
 #'
 #' @examples
-#' data(confusion)
-#' confusion$control
-"confusion"
+#' data(obfuscation)
+#' obfuscation$control
+"obfuscation"
