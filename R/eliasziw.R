@@ -57,7 +57,7 @@ eliasziw.impl <- function (abcd) {
 
   C.hat <- 1 + (nc - 1) * rho.tilde
   
-  X2di <- mcnemar(bk, ck) / C.hat
+  X2di <- .mcnemar(bk, ck) / C.hat
   
   X2di
 }

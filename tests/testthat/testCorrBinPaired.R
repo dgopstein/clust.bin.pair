@@ -9,11 +9,11 @@ post.measure.name <- 'treatment'
 abcd.data <- results.to.contingency.cols(confusion, group.names, pre.measure.name, post.measure.name)
 
 test_that("McNemar scores datasets correctly", { 
-  expect_equal(mcnemar(disagreements$bh, disagreements$ch), 11.85, tolerance=.1, scale=NULL, "disagreements")
+  expect_equal(.mcnemar(disagreements$bh, disagreements$ch), 11.85, tolerance=.1, scale=NULL, "disagreements")
 }) 
 
 test_that("clustered methods are same order as McNemar", {
-  mcnemar.chi2 <- mcnemar(abcd.data$bk, abcd.data$ck)
+  mcnemar.chi2 <- .mcnemar(abcd.data$bk, abcd.data$ck)
   durkalski.chi2  <-  durkalski.test(confusion, group.names, pre.measure.name, post.measure.name)
   obuchowski.chi2 <- obuchowski.test(confusion, group.names, pre.measure.name, post.measure.name)
   eliasziw.chi2   <-   eliasziw.test(confusion, group.names, pre.measure.name, post.measure.name)
