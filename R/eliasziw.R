@@ -1,14 +1,9 @@
 # Eliasziw & Donner 1991
 
-eliasziw.test <- function (x, group.names, pre.measure.name, post.measure.name) {
-  z <- results.to.contingency.cols(x, group.names, pre.measure.name, post.measure.name)
-  
-  abcd <- z[,c("ak","bk","ck","dk")]
-  
-  eliasziw.impl(abcd)
-}
+eliasziw.test <- function(ak, bk, ck, dk)
+  .eliasziw.impl(data.frame(ak=ak,bk=bk,ck=ck,dk=dk))
 
-eliasziw.impl <- function (abcd) {
+.eliasziw.impl <- function (abcd) {
   bk <- abcd$bk
   ck <- abcd$ck
   
@@ -17,7 +12,7 @@ eliasziw.impl <- function (abcd) {
 
   # Number of discordant answers per subject
   Sk <- bk + ck
-  
+
   # Number of subjects with discordant answer
   Kd <- sum(Sk >= 1)
   
@@ -35,14 +30,14 @@ eliasziw.impl <- function (abcd) {
   
   # Column-wise sum
   abcd.sum <- sapply(abcd, sum)
-  
-  P.hat <- abcd.sum / N
 
+  P.hat <- abcd.sum / N
+  
   nk_X_P.hat <-t(sapply(nk, function(x) x * P.hat))
 
   BMSpooled <- (1 / K) * sum( (abcd.mat - nk_X_P.hat)^2 / nk )
   WMSpooled <- (1 / (K * (n.bar - 1))) * sum( ( abcd.mat *  as.vector(nk - abcd.mat)) / nk )
-  
+
   rho.tilde.star <- (BMSpooled - WMSpooled) / (BMSpooled + (n0 - 1)*WMSpooled)
   
   rho.tilde <- 1 / (1 + P.hat[['bk']]*(1 - rho.tilde.star)/rho.tilde.star
@@ -57,7 +52,7 @@ eliasziw.impl <- function (abcd) {
 
   C.hat <- 1 + (nc - 1) * rho.tilde
   
-  X2di <- .mcnemar(bk, ck) / C.hat
+  X2di <- .mcnemar.impl(bk, ck) / C.hat
   
   X2di
 }

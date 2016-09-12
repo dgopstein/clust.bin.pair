@@ -1,11 +1,9 @@
 # Yang 2010
 
-yang.test <- function(x, group.names, pre.measure.name, post.measure.name) {
-  z <- results.to.contingency.cols(x, group.names, pre.measure.name, post.measure.name)
-  yang.impl(z$nk, z$bk, z$ck)
-}
+yang.test <- function(ak, bk, ck, dk)
+  .yang.impl(ak+bk+ck+dk, bk, ck)
 
-yang.impl <- function(nk, bk, ck) {
+.yang.impl <- function(nk, bk, ck) {
   N <- sum(nk)
   K <- length(nk)
   

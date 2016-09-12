@@ -81,14 +81,6 @@ generate.cluster <- function(K, nk, p1, p2, r1, r2, r3, r4) {
   trials
 }
 
-
-apply.tests <- function (clusters) {
-  tests <- c(.mcnemar.wrapper, eliasziw.test, obuchowski.test, durkalski.test, yang.test)
-  res <- sapply(tests, function(t) do.call(t,  list(clusters, "cluster", "t1", "t2")))
-  names(res) <- c("mcnemar", "eliasziw", "obuchowski", "durkalski", "yang")
-  res
-}
-
 empirical.power <- function(chi2s) length(which(chi2s > qchisq(.95, df=1))) / length(chi2s)
 
 flatten <- function(x) {

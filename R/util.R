@@ -12,13 +12,13 @@ results.to.contingency.cols <- function(x, group.names, pre.measure.name, post.m
       dk = interp(~sum(!pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)))
 }
 
-.mcnemar <- function(bk, ck) {
+.mcnemar.test <- function(ak, bk, ck, dk) {
+   ak+dk
+   .mcnemar.impl(bk,ck)
+}
+
+.mcnemar.impl <- function(bk, ck) {
   b <- sum(bk)
   c <- sum(ck)
   (b - c)^2/(b + c)
-}
-
-.mcnemar.wrapper <- function (x, group.names, pre.measure.name, post.measure.name) {
-  z <- results.to.contingency.cols(x, group.names, pre.measure.name, post.measure.name)
-  mcnemar(z$bk, z$ck)
 }
