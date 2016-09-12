@@ -31,9 +31,13 @@ test_that("All tests work with all datasets", {
   
   apply.tests(confusion.contingencies, "Confusion")
   
-  # Disagreeme
+  # Disagreements
   disagreements.contingencies <- disagreements[, c("ah", "bh", "ch", "dh")]
   names(disagreements.contingencies) <- c("ak", "bk", "ck", "dk")
 
   apply.tests(disagreements.contingencies, "Disagreements")
+  
+  # Disagreements
+  thyroid
+  
 })

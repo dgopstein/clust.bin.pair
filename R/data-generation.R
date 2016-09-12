@@ -83,7 +83,7 @@ generate.cluster <- function(K, nk, p1, p2, r1, r2, r3, r4) {
 
 empirical.power <- function(chi2s) length(which(chi2s > qchisq(.95, df=1))) / length(chi2s)
 
-flatten <- function(x) {
+.flatten <- function(x) {
   y <- list()
   lapply(x, function(x) y <<- c(y,x))
   y
@@ -108,7 +108,7 @@ pi3s <- seq(from=0.45, by=0.05, length.out=9)
 p1k2 <- p1k
 p2k2 <- p1k2 + 0.10
 
-# datasets <- flatten(replicate(20, generate.clusters(K=15, nk=2, p1=p1k, p2=p2k, r1=r1, r2=r2, r3=r3, r4=r4), simplify=FALSE))
+# datasets <- .flatten(replicate(20, generate.clusters(K=15, nk=2, p1=p1k, p2=p2k, r1=r1, r2=r2, r3=r3, r4=r4), simplify=FALSE))
 # system.time(chisq.statistics <- sapply(datasets, apply.tests))
 # apply(chisq.statistics, 1, empirical.power)
 
