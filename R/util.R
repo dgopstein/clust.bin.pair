@@ -2,7 +2,7 @@ library(dplyr)
 library(plyr)
 library(lazyeval)
 
-ungrouped.to.contingency <- function(x, group.names, pre.measure.name, post.measure.name) {
+paired.to.contingency <- function(x, group.names, pre.measure.name, post.measure.name) {
   x %>%
     group_by_(.dots = group.names) %>%
     summarize_(
@@ -27,7 +27,7 @@ nested.to.contingency <- function(x, id.name, response1.name, response2.name) {
   grouped.indexed <- ddply(grouped, 'group', transform, idx = seq_along(group))
   merged <- merge(x = df, y = grouped, by.x=0, by.y='group')[, -1]
   
-  ungrouped.to.contingency(merged, id.name, "t1", "t2")
+  paired.to.contingency(merged, id.name, "t1", "t2")
 }
 
 .mcnemar.test <- function(ak, bk, ck, dk) {

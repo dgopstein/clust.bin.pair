@@ -26,7 +26,7 @@ apply.tests <- function (x, x.name) {
 test_that("All tests work with all datasets", {
 
   # obfuscation
-  obfuscation.contingencies <- ungrouped.to.contingency(obfuscation,
+  obfuscation.contingencies <- paired.to.contingency(obfuscation,
     group.names = c('subject', 'atom'), pre.measure.name = 'control', post.measure.name = 'treatment')
   
   apply.tests(obfuscation.contingencies, "obfuscation")
