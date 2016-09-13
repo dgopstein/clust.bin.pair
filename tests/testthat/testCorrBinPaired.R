@@ -3,7 +3,7 @@ library(CorrBinPaired)
 context("Top Level Functions")
 
 test_that("McNemar scores datasets correctly", { 
-  expect_equal(.mcnemar.impl(disagreements$bh, disagreements$ch), 11.85, tolerance=.1, scale=NULL, "disagreements")
+  expect_equal(.mcnemar.impl(psychiatry$bh, psychiatry$ch), 11.85, tolerance=.1, scale=NULL, "psychiatry")
 }) 
 
 apply.tests <- function (x, x.name) {
@@ -25,19 +25,19 @@ apply.tests <- function (x, x.name) {
 
 test_that("All tests work with all datasets", {
 
-  # Confusion
-  confusion.contingencies <- results.to.contingency.cols(confusion,
+  # obfuscation
+  obfuscation.contingencies <- ungrouped.to.contingency(obfuscation,
     group.names = c('subject', 'atom'), pre.measure.name = 'control', post.measure.name = 'treatment')
   
-  apply.tests(confusion.contingencies, "Confusion")
+  apply.tests(obfuscation.contingencies, "obfuscation")
   
-  # Disagreements
-  disagreements.contingencies <- disagreements[, c("ah", "bh", "ch", "dh")]
-  names(disagreements.contingencies) <- c("ak", "bk", "ck", "dk")
+  # psychiatry
+  psychiatry.contingencies <- psychiatry[, c("ah", "bh", "ch", "dh")]
+  names(psychiatry.contingencies) <- c("ak", "bk", "ck", "dk")
 
-  apply.tests(disagreements.contingencies, "Disagreements")
+  apply.tests(psychiatry.contingencies, "psychiatry")
   
-  # Disagreements
-  thyroid
-  
+  # psychiatry
+  thyroids.contingencies <- nested.to.contingency(thyroids, "patient", "x.pet", "x.spect")
+  apply.tests(thyroids.contingencies, "thyroids")
 })
