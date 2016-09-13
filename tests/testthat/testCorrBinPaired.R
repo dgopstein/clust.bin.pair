@@ -2,6 +2,13 @@ library(CorrBinPaired)
 
 context("Top Level Functions")
 
+test_that("Utility functions works", {
+  expect_true(same.length(c(1, 2), c(3, 4)))
+  expect_false(same.length(c(1), c(3, 4)))
+  expect_false(same.length(c(), c(3)))
+  expect_true(same.length(c(), c()))
+})
+
 test_that("McNemar scores datasets correctly", { 
   expect_equal(.mcnemar.impl(psychiatry$bh, psychiatry$ch), 11.85, tolerance=.1, scale=NULL, "psychiatry")
 }) 
