@@ -1,5 +1,6 @@
 # Yang 2010
 
+#' @export
 yang.test <- function(ak, bk, ck, dk)
   .yang.impl(ak+bk+ck+dk, bk, ck)
 

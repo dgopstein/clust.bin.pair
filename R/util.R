@@ -1,7 +1,4 @@
-library(dplyr)
-library(plyr)
-library(lazyeval)
-
+#' @export
 paired.to.contingency <- function(x, group.names, pre.measure.name, post.measure.name) {
   x %>%
     group_by_(.dots = group.names) %>%
@@ -13,13 +10,14 @@ paired.to.contingency <- function(x, group.names, pre.measure.name, post.measure
       dk = interp(~sum(!pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)))
 }
 
+#' @export
 nested.to.contingency <- function(x, id.name, response1.name, response2.name) {
   df <- data.frame(x)
   df[[response1.name]] <- sapply(x[[response1.name]], function(x) data.frame(x), simplify=FALSE)
   df[[response2.name]] <- sapply(x[[response2.name]], function(x) data.frame(x), simplify=FALSE)
   
-  r1 <- melt(df[[response1.name]], measure.vars=1)
-  r2 <- melt(df[[response2.name]], measure.vars=1)
+  r1 <- reshape::melt(df[[response1.name]], measure.vars=1)
+  r2 <- reshape::melt(df[[response2.name]], measure.vars=1)
   
   assertthat::assert_that(all(r1$L1 == r2$L1))
   

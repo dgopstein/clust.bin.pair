@@ -26,6 +26,7 @@
 #' @source Obuchowski 1998
 #'
 #' @examples
-#' data(disagreements) !!!!!!!!!!!!!!!!!!!!!!!!!!
-#' disagreements$Wh == round((disagreements$bh - disagreements$ch) / disagreements$Nh, 2)
+#' data(thyroids)
+#' tc <- nested.to.contingency(thyroids, "patient", "x.pet", "x.spect")
+#' obuchowski(tc$ak, tc$bk, tc$ck, tc$dk)
 "thyroids"

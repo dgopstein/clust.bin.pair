@@ -1,5 +1,6 @@
 # Durkalski 2003
 
+#' @export
 durkalski.test <- function(ak, bk, ck, dk)
   .durkalski.impl(ak+bk+ck+dk, bk, ck)
 

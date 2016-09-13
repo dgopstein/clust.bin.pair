@@ -1,5 +1,6 @@
 # Eliasziw & Donner 1991
 
+#' @export
 eliasziw.test <- function(ak, bk, ck, dk)
   .eliasziw.impl(data.frame(ak=ak,bk=bk,ck=ck,dk=dk))
 

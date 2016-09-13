@@ -1,5 +1,6 @@
 # An implementation of Obuchowski 1998, using of Yang 2010's simplification
 
+#' @export
 obuchowski.test <- function(ak, bk, ck, dk)
   .obuchowski.impl(ak+bk+ck+dk, bk, ck)
 
