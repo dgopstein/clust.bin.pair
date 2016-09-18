@@ -28,7 +28,7 @@ in Obuchowki 1998.
 \examples{
 data(thyroids)
 tc <- nested.to.contingency(thyroids, "patient", "x.pet", "x.spect")
-obuchowski(tc$ak, tc$bk, tc$ck, tc$dk)
+obuchowski.test(tc$ak, tc$bk, tc$ck, tc$dk)
 }
 \references{
 Obuchowski 1998

@@ -1,5 +1,6 @@
 library(dplyr)
 library(lazyeval)
+library(plyr)
 library(reshape)
 
 #' @export
