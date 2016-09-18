@@ -36,9 +36,9 @@ This package contains 5 statistical tests suitable for analyzing correlated bina
 
 Included is sample data from real world experiments of the form that can benefit from the application of these tests:
 
-- **Confusion**: The results of programmers hand-evaluating pairs of obfuscated and deobfuscated snippets of C source code.
-- **Disagreements**
-- **Thyroids**
+- **Obfuscation**: Programmers were asked to hand-evaluate pairs of obfuscated and deobfuscated snippets of C source code. The data is tested to see whether or not programmers trace deobfuscated code any differently than obfuscated code.
+- **Psychiatry**: Psychiatrists and their patients were asked to evaluate the applicability of various concerns and treatments to the patient. The data is tested to see how well patient and doctor perception aligns.
+- **Thyroids**: Hyperparathyroidism patients were scanned using both PET and SPECT tests. The data is tested to evaluate the sensitivity and specificity of the two tomogoraphy tests.
 
 ### Simulation and Evaluation
 
