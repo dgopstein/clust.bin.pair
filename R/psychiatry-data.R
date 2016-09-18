@@ -40,5 +40,9 @@
 #'
 #' @examples
 #' data(psychiatry)
+#' 
 #' psychiatry$Wh == round((psychiatry$bh - psychiatry$ch) / psychiatry$Nh, 2)
+#' 
+#' eliasziw.test(psychiatry$ah, psychiatry$bh, psychiatry$ch, psychiatry$dh)
+#' 
 "psychiatry"
