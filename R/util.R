@@ -1,3 +1,7 @@
+library(dplyr)
+library(lazyeval)
+library(reshape)
+
 #' @export
 paired.to.contingency <- function(x, group.names, pre.measure.name, post.measure.name) {
   x %>%
