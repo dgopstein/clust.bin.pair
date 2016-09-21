@@ -1,4 +1,4 @@
 library(testthat)
-library(CorrBinPaired)
+library(clust.bin.pair)
 
-test_check("CorrBinPaired")
+test_check("clust.bin.pair")

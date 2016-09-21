@@ -1,6 +1,6 @@
-# CorrBinPaired
+# clust.bin.pair
 
-Statistical tools for analyzing correlated binary matched-pair data in R.
+Statistical tools for analyzing clustered binary matched-pair data in R.
 
 ### Correlated Binary Matched-Pair
 

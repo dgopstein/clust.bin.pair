@@ -1,4 +1,4 @@
-library(CorrBinPaired)
+library(clust.bin.pair)
 
 context("Top Level Functions")
 
