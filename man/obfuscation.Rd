@@ -24,6 +24,7 @@ Half of the questions was intentionally obfuscated to elicit confusion.
 }
 \examples{
 data(obfuscation)
+
 oc <- paired.to.contingency(obfuscation, c("subject", "atom"), "control", "treatment")
 durkalski.test(oc$ak, oc$bk, oc$ck, oc$dk)
 }

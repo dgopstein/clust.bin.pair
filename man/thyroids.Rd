@@ -27,6 +27,13 @@ in Obuchowki 1998.
 }
 \examples{
 data(thyroids)
+
+thyroids$n.glands == sapply(thyroids$x.pet, length)
+thyroids$n.glands == sapply(thyroids$x.spect, length)
+
+thyroids$n.pet   == sapply(thyroids$x.pet,   function(x) length(which(x == 1)))
+thyroids$n.spect == sapply(thyroids$x.spect, function(x) length(which(x == 1)))
+
 tc <- nested.to.contingency(thyroids, "patient", "x.pet", "x.spect")
 obuchowski.test(tc$ak, tc$bk, tc$ck, tc$dk)
 }

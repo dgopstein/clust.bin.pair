@@ -1,18 +1,15 @@
-library(dplyr)
-library(lazyeval)
-library(plyr)
-library(reshape)
-
 #' @export
 paired.to.contingency <- function(x, group.names, pre.measure.name, post.measure.name) {
+  `%>%` <- dplyr::`%>%`
+  
   x %>%
-    group_by_(.dots = group.names) %>%
-    summarize_(
+    dplyr::group_by_(.dots = group.names) %>%
+    dplyr::summarize_(
       nk = ~n(),
-      ak = interp(~sum( pre &  post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
-      bk = interp(~sum( pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
-      ck = interp(~sum(!pre &  post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
-      dk = interp(~sum(!pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)))
+      ak = lazyeval::interp(~sum( pre &  post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
+      bk = lazyeval::interp(~sum( pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
+      ck = lazyeval::interp(~sum(!pre &  post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)),
+      dk = lazyeval::interp(~sum(!pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)))
 }
 
 #' @export
@@ -27,7 +24,7 @@ nested.to.contingency <- function(x, id.name, response1.name, response2.name) {
   assertthat::assert_that(all(r1$L1 == r2$L1))
   
   grouped <- data.frame(cbind(group = r1$L1, t1 = r1$value, t2 = r2$value))
-  grouped.indexed <- ddply(grouped, 'group', transform, idx = seq_along(group))
+  grouped.indexed <- plyr::ddply(grouped, 'group', transform, idx = seq_along(group))
   merged <- merge(x = df, y = grouped, by.x=0, by.y='group')[, -1]
   
   paired.to.contingency(merged, id.name, "t1", "t2")

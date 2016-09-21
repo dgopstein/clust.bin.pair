@@ -21,21 +21,12 @@ Petryshen
 data(psychiatry)
 }
 \description{
-Reported by Petryshen, described by Eliasziw as follows:
-Disagreements between patients and psychiatrists on check-listed items
-that relate to patient concerns and treatment (Petryshen, et. al). One
-of these items was the perceived relevance to treatment of the patient’s
-inability to tolerate certain medications. A sample of 29 psychiatrists,
-who each treated from one to eight patients, were asked to identify whether
-in their opinion this item was relevant to each of their patients. In turn,
-the 135 patients who received treatment from these psychiatrists were also
-asked this question, as it applied to themselves. The aim of the study was
-to investigate if patients and psychiatrists would equally likely identify
-a given item as relevant. Since each patient matches with one of the
-psychiatrists in the study, this suggested constructing N = 135 matched pairs
-of responses ( Yli, Y,,), i = 1,2, . . . , 135, where YIi = 1 or 0 is the
-patient response (identifies the item or not) and Y,i = 1 or 0 is the
-psychiatrist response.
+Psychiatrists and their patients were surveyed in pairs regarding patient
+concerns and treatment. Each psychiatrist was asked whether each quesition
+item was relevant to their patient and each of their patients were asked the
+same. The data can be evaluated to answer the question of whether there was
+patient/doctor agreement in each item. The sample was 29 psychiatrists, each
+with 1-8 patients, for a total of N = 135 matched pairs.
 }
 \examples{
 data(psychiatry)
@@ -43,10 +34,9 @@ data(psychiatry)
 psychiatry$Wh == round((psychiatry$bh - psychiatry$ch) / psychiatry$Nh, 2)
 
 eliasziw.test(psychiatry$ah, psychiatry$bh, psychiatry$ch, psychiatry$dh)
-
 }
 \references{
-Petryshen
+Petryshen 1988
 
 Eliasziw 1991
 }
