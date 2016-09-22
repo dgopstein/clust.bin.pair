@@ -44,6 +44,8 @@ test_that("Contingency generation functions work", {
   nested.df.w.c.id <- nested.df
   nested.df.w.c.id$id <- unlist(nested.df.w.c.id$id)
 
+  expect_error(nested.to.contingency(thyroids, "id", "t1", "t2"), "column.*id")
+  
   thyroid.contingency <-
     data.frame(patient = 1:6, nk = c(3,3,3,1,3,4), ak=c(0,2,3,1,2,4), bk=rep(0,times=6), ck=c(2,1,0,0,1,0), dk=c(1,0,0,0,0,0))
   expect_true(all(thyroid.contingency == head(nested.to.contingency(thyroids, 'patient', 'x.pet', 'x.spect'))))

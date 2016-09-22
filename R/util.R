@@ -14,6 +14,14 @@ paired.to.contingency <- function(x, group.names, pre.measure.name, post.measure
 
 #' @export
 nested.to.contingency <- function(x, id.name, response1.name, response2.name) {
+  if (!id.name %in% names(x)) {
+    stop(paste0("id column '", id.name, "' not in x"))
+  } else if (!response1.name %in% names(x)) {
+    stop(paste0("response1.name column '", response1.name, "' not in x"))
+  } else if (!response2.name %in% names(x)) {
+    stop(paste0("response2.name column '", response2.name, "' not in x"))
+  }
+  
   df <- data.frame(x)
   df[[response1.name]] <- sapply(x[[response1.name]], function(x) data.frame(x), simplify=FALSE)
   df[[response2.name]] <- sapply(x[[response2.name]], function(x) data.frame(x), simplify=FALSE)
