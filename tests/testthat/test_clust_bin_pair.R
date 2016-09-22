@@ -10,11 +10,6 @@ apply.tests <- function (x, x.name) {
   tests <- c(.mcnemar.test, eliasziw.test, obuchowski.test, durkalski.test, yang.test)
   res <- sapply(tests, function(t) do.call(t, list(ak=x$ak, bk=x$bk, ck=x$ck, dk=x$dk)))
   names(res) <- c("mcnemar", "eliasziw", "obuchowski", "durkalski", "yang")
-
-  # All adjusted methods should be less than mcnemars
-  # sapply(names(res), function(name) {
-  #   expect_gte(res[["mcnemar"]], res[[name]]) #, info = paste(name, "is less than McNemar on dataset", x.name))
-  # })
   
   # Skip mcnemars and compare all the rest to their mean
   sapply(names(res[-1]), function(name) {
@@ -40,4 +35,24 @@ test_that("All tests work with all datasets", {
   # psychiatry
   thyroids.contingencies <- nested.to.contingency(thyroids, "patient", "x.pet", "x.spect")
   apply.tests(thyroids.contingencies, "thyroids")
+})
+
+test_that("Contingency generation functions work", {
+  nested.list  <-  list(id = c(1, 2, 3), t1 = list(c(0, 0), c(1, 0, 0), c(1, 1)), t2 = list(c(0, 1), c(1, 1, 0), c(0, 0)))
+  nested.cbind <- cbind(id = c(1, 2, 3), t1 = list(c(0, 0), c(1, 0, 0), c(1, 1)), t2 = list(c(0, 1), c(1, 1, 0), c(0, 0)))
+  nested.df <- as.data.frame(nested.cbind)
+  nested.df.w.c.id <- nested.df
+  nested.df.w.c.id$id <- unlist(nested.df.w.c.id$id)
+
+  thyroid.contingency <-
+    data.frame(patient = 1:6, nk = c(3,3,3,1,3,4), ak=c(0,2,3,1,2,4), bk=rep(0,times=6), ck=c(2,1,0,0,1,0), dk=c(1,0,0,0,0,0))
+  expect_true(all(thyroid.contingency == head(nested.to.contingency(thyroids, 'patient', 'x.pet', 'x.spect'))))
+  
+  nested.to.contingency(nested.df.w.c.id, id.name='id', response1.name='t1', response2.name='t2')
+  nested.to.contingency(nested.df, id.name='id', response1.name='t1', response2.name='t2')
+  
+  
+  
+  str(nested.df)
+  str(thyroids)
 })
