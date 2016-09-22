@@ -38,21 +38,21 @@ test_that("All tests work with all datasets", {
 })
 
 test_that("count.contingency", {
-  expect_equal(1, count.contingency.row(0, 0))
-  expect_equal(2, count.contingency.row(0, 1))
-  expect_equal(3, count.contingency.row(1, 0))
-  expect_equal(4, count.contingency.row(1, 1))
+  expect_equal(4, count.contingency.row(0, 0))
+  expect_equal(3, count.contingency.row(0, 1))
+  expect_equal(2, count.contingency.row(1, 0))
+  expect_equal(1, count.contingency.row(1, 1))
   
-  expect_equal(1, count.contingency.row(FALSE, FALSE))
-  expect_equal(2, count.contingency.row(FALSE, TRUE))
-  expect_equal(3, count.contingency.row(TRUE, FALSE))
-  expect_equal(4, count.contingency.row(TRUE, TRUE))
+  expect_equal(4, count.contingency.row(FALSE, FALSE))
+  expect_equal(3, count.contingency.row(FALSE, TRUE))
+  expect_equal(2, count.contingency.row(TRUE, FALSE))
+  expect_equal(1, count.contingency.row(TRUE, TRUE))
   
   df <- data.frame(t1 = c(0, 0, 1, 1), t2 = c(0, 1, 0, 1))
   all(count.contingency(df[1], df[2]) == c(1, 1, 1, 1))
   
   df.rep <- df[rep(1:4, times=1:4),]
-  all(count.contingency(t1 = df.rep[1], t2 = df.rep[2]) == 1:4)
+  all(count.contingency(t1 = df.rep[1], t2 = df.rep[2]) == 4:1)
 })
 
 test_that("Contingency generation functions work", {
@@ -66,15 +66,10 @@ test_that("Contingency generation functions work", {
                info="Throw error if the column names don't appear in data structure")
   
   thyroid.contingency.head <-
-    data.frame(patient = 1:6, nk = c(3,3,3,1,3,4), ak=c(0,2,3,1,2,4), bk=rep(0,times=6), ck=c(2,1,0,0,1,0), dk=c(1,0,0,0,0,0))
+    data.frame(patient = 1:6, ak=c(0,2,3,1,2,4), bk=rep(0,times=6), ck=c(2,1,0,0,1,0), dk=c(1,0,0,0,0,0))
   thyroid.unnested <- nested.to.contingency(thyroids, id.name='patient', response1.name='x.pet', response2.name='x.spect')
   expect_true(all(thyroid.contingency.head == head(thyroid.unnested)), info = "nested.to.contingency works for thyroids")
   
   nested.to.contingency(nested.df.w.c.id, id.name='id', response1.name='t1', response2.name='t2')
   nested.to.contingency(nested.df, id.name='id', response1.name='t1', response2.name='t2')
-  
-  
-  
-  str(nested.df)
-  str(thyroids)
 })

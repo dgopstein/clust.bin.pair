@@ -13,7 +13,7 @@ paired.to.contingency <- function(x, group.names, pre.measure.name, post.measure
 }
 
 # return the index into [a, b, c, d] to increment
-count.contingency.row <- function(r1, r2) 1 + 2*as.integer(as.logical(r1)) + as.integer(as.logical(r2))
+count.contingency.row <- function(r1, r2) 1 + 2*as.integer(!as.logical(r1)) + as.integer(!as.logical(r2))
 
 # fill a vector [ak, bk, ck, dk] with the counts from matched pair data [t1, t2]
 count.contingency <- function(t1, t2) {
@@ -31,10 +31,6 @@ count.contingency <- function(t1, t2) {
 
 #' @export
 nested.to.contingency <- function(x, id.name, response1.name, response2.name) {
-  mapply(count.contingency, x[response1.name], x[response2.name])
-} 
-
-nested.to.contingency1 <- function(x, id.name, response1.name, response2.name) {
   if (!id.name %in% names(x)) {
     stop(paste0("id column '", id.name, "' not in x"))
   } else if (!response1.name %in% names(x)) {
@@ -43,21 +39,12 @@ nested.to.contingency1 <- function(x, id.name, response1.name, response2.name) {
     stop(paste0("response2.name column '", response2.name, "' not in x"))
   }
   
-  df <- data.frame(x)
-  df[[response1.name]] <- sapply(x[[response1.name]], function(x) data.frame(x), simplify=FALSE)
-  df[[response2.name]] <- sapply(x[[response2.name]], function(x) data.frame(x), simplify=FALSE)
+  mapply(count.contingency, x[response1.name], x[response2.name])
   
-  r1 <- reshape::melt(df[[response1.name]], measure.vars=1)
-  r2 <- reshape::melt(df[[response2.name]], measure.vars=1)
+  counts <- t(apply(x[, c(response1.name, response2.name)], 1, function(x) count.contingency(x[1], x[2])))
   
-  assertthat::assert_that(all(r1$L1 == r2$L1))
-  
-  grouped <- data.frame(cbind(group = r1$L1, t1 = r1$value, t2 = r2$value))
-  grouped.indexed <- plyr::ddply(grouped, 'group', transform, idx = seq_along(group))
-  merged <- merge(x = df, y = grouped, by.x=0, by.y='group')[, -1]
-  
-  paired.to.contingency(merged, id.name, "t1", "t2")
-}
+  cbind(x[id.name], counts)
+} 
 
 .mcnemar.test <- function(ak, bk, ck, dk) {
    ak+dk
