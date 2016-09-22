@@ -71,5 +71,7 @@ test_that("Contingency generation functions work", {
   expect_true(all(thyroid.contingency.head == head(thyroid.unnested)), info = "nested.to.contingency works for thyroids")
   
   nested.to.contingency(nested.df.w.c.id, id.name='id', response1.name='t1', response2.name='t2')
-  nested.to.contingency(nested.df, id.name='id', response1.name='t1', response2.name='t2')
+  nested.to.contingency(nested.df,        id.name='id', response1.name='t1', response2.name='t2')
+  nested.to.contingency(nested.cbind,     id.name='id', response1.name='t1', response2.name='t2')
+  nested.to.contingency(nested.list,      id.name='id', response1.name='t1', response2.name='t2')
 })

@@ -29,13 +29,17 @@ count.contingency <- function(t1, t2) {
   colSums(t(mapply(function(r1, r2) {update.contingency(contingency, r1, r2)}, unlist(t1), unlist(t2))))
 }
 
+has.col.name <- function (x, name) {
+  name %in% colnames(x) || name %in% names(x)
+}
+
 #' @export
 nested.to.contingency <- function(x, id.name, response1.name, response2.name) {
-  if (!id.name %in% names(x)) {
+  if (!has.col.name(x, id.name)) {
     stop(paste0("id column '", id.name, "' not in x"))
-  } else if (!response1.name %in% names(x)) {
+  } else if (!has.col.name(x, response1.name)) {
     stop(paste0("response1.name column '", response1.name, "' not in x"))
-  } else if (!response2.name %in% names(x)) {
+  } else if (!has.col.name(x, response1.name)) {
     stop(paste0("response2.name column '", response2.name, "' not in x"))
   }
   
