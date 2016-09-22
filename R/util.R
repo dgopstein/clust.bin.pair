@@ -12,8 +12,29 @@ paired.to.contingency <- function(x, group.names, pre.measure.name, post.measure
       dk = lazyeval::interp(~sum(!pre & !post), pre = as.name(pre.measure.name), post = as.name(post.measure.name)))
 }
 
+# return the index into [a, b, c, d] to increment
+count.contingency.row <- function(r1, r2) 1 + 2*as.integer(as.logical(r1)) + as.integer(as.logical(r2))
+
+# fill a vector [ak, bk, ck, dk] with the counts from matched pair data [t1, t2]
+count.contingency <- function(t1, t2) {
+  contingency <- c(ak = 0, bk = 0, ck = 0, dk = 0)
+  
+  #Reduce(function(cntgy, row) {cntgy[count.contingency.row(row[1], row[2])])}, cbind(t1, t2), contingency)
+  
+  update.contingency <- function(cntgy, r1, r2) {
+    idx <- count.contingency.row(r1, r2)
+    replace(cntgy, idx, cntgy[idx] + 1)
+  }
+
+  colSums(t(mapply(function(r1, r2) {update.contingency(contingency, r1, r2)}, unlist(t1), unlist(t2))))
+}
+
 #' @export
 nested.to.contingency <- function(x, id.name, response1.name, response2.name) {
+  mapply(count.contingency, x[response1.name], x[response2.name])
+} 
+
+nested.to.contingency1 <- function(x, id.name, response1.name, response2.name) {
   if (!id.name %in% names(x)) {
     stop(paste0("id column '", id.name, "' not in x"))
   } else if (!response1.name %in% names(x)) {
