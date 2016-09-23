@@ -25,7 +25,7 @@
 #' @examples
 #' data(obfuscation)
 #' 
-#' oc <- paired.to.contingency(obfuscation, c("subject", "atom"), "control", "treatment")
+#' oc <- paired.to.contingency(obfuscation[,c("subject", "atom")], obfuscation$control, obfuscation$treatment)
 #' durkalski.test(oc$ak, oc$bk, oc$ck, oc$dk)
 
 "obfuscation"

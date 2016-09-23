@@ -17,7 +17,7 @@
 #'   \item{Nh}{the number of the psychiatrist's patients participating in the experiment}
 #'   \item{ah}{both participants answered 1}
 #'   \item{bh}{patient answered 1, psychiatrist answered 0}
-#'   \item{bc}{patient answered 0, psychiatrist answered 1}
+#'   \item{ch}{patient answered 0, psychiatrist answered 1}
 #'   \item{dh}{both participants answered 0}
 #'   \item{Wh}{Normalized difference: (bh - ch) / Nh}
 #' }
