@@ -56,22 +56,20 @@ test_that("count.contingency", {
 })
 
 test_that("Contingency generation functions work", {
+  thyroid.contingency.head <- data.frame(ak=c(0,2,3,1,2,4), bk=rep(0,times=6), ck=c(2,1,0,0,1,0), dk=c(1,0,0,0,0,0))
+  thyroid.unnested <- nested.to.contingency(thyroids$x.pet, thyroids$x.spect)
+  expect_true(all(thyroid.contingency.head == head(thyroid.unnested)), info = "nested.to.contingency works for thyroids")
+  
   nested.list  <-  list(id = c(1, 2, 3), t1 = list(c(0, 0), c(1, 0, 0), c(1, 1)), t2 = list(c(0, 1), c(1, 1, 0), c(0, 0)))
   nested.cbind <- cbind(id = c(1, 2, 3), t1 = list(c(0, 0), c(1, 0, 0), c(1, 1)), t2 = list(c(0, 1), c(1, 1, 0), c(0, 0)))
   nested.df <- as.data.frame(nested.cbind)
   nested.df.w.c.id <- nested.df
   nested.df.w.c.id$id <- unlist(nested.df.w.c.id$id)
-
-  expect_error(nested.to.contingency(thyroids, "id", "t1", "t2"), "column.*id",
-               info="Throw error if the column names don't appear in data structure")
   
-  thyroid.contingency.head <-
-    data.frame(patient = 1:6, ak=c(0,2,3,1,2,4), bk=rep(0,times=6), ck=c(2,1,0,0,1,0), dk=c(1,0,0,0,0,0))
-  thyroid.unnested <- nested.to.contingency(thyroids, id.name='patient', response1.name='x.pet', response2.name='x.spect')
-  expect_true(all(thyroid.contingency.head == head(thyroid.unnested)), info = "nested.to.contingency works for thyroids")
+  nested.res <- data.frame(ak = c(0,1,0), bk = c(0,0,2), ck = c(1,1,0), dk = c(1,1,0))
   
-  nested.to.contingency(nested.df.w.c.id, id.name='id', response1.name='t1', response2.name='t2')
-  nested.to.contingency(nested.df,        id.name='id', response1.name='t1', response2.name='t2')
-  nested.to.contingency(nested.cbind,     id.name='id', response1.name='t1', response2.name='t2')
-  nested.to.contingency(nested.list,      id.name='id', response1.name='t1', response2.name='t2')
+  expect_true(all(nested.res == nested.to.contingency(nested.df.w.c.id$t1, nested.df.w.c.id$t2)))
+  expect_true(all(nested.res == nested.to.contingency(nested.df$t1, nested.df$t2)))
+  expect_true(all(nested.res == nested.to.contingency(nested.cbind[,"t1"], nested.cbind[,"t2"])))
+  expect_true(all(nested.res == nested.to.contingency(nested.list$t1, nested.list$t2)))
 })

@@ -34,20 +34,10 @@ has.col.name <- function (x, name) {
 }
 
 #' @export
-nested.to.contingency <- function(x, id.name, response1.name, response2.name) {
-  if (!has.col.name(x, id.name)) {
-    stop(paste0("id column '", id.name, "' not in x"))
-  } else if (!has.col.name(x, response1.name)) {
-    stop(paste0("response1.name column '", response1.name, "' not in x"))
-  } else if (!has.col.name(x, response1.name)) {
-    stop(paste0("response2.name column '", response2.name, "' not in x"))
-  }
+nested.to.contingency <- function(response1, response2) {
+  mapply(count.contingency, response1, response2)
   
-  mapply(count.contingency, x[response1.name], x[response2.name])
-  
-  counts <- t(apply(x[, c(response1.name, response2.name)], 1, function(x) count.contingency(x[1], x[2])))
-  
-  cbind(x[id.name], counts)
+  t(apply(cbind(response1, response2), 1, function(x) count.contingency(x[1], x[2])))
 } 
 
 .mcnemar.test <- function(ak, bk, ck, dk) {

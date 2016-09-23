@@ -34,7 +34,10 @@
 #' thyroids$n.pet   == sapply(thyroids$x.pet,   function(x) length(which(x == 1)))
 #' thyroids$n.spect == sapply(thyroids$x.spect, function(x) length(which(x == 1)))
 #' 
-#' tc <- nested.to.contingency(thyroids, "patient", "x.pet", "x.spect")
-#' obuchowski.test(tc$ak, tc$bk, tc$ck, tc$dk)
+#' tc <- nested.to.contingency(thyroids$x.pet, thyroids$x.spect)
+#'
+#' obuchowski.test(tc[,'ak'], tc[,'bk'], tc[,'ck'], tc[,'dk'])
+#' 
+#' do.call(obuchowski.test, data.frame(tc))
 
 "thyroids"
