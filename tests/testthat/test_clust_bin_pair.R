@@ -44,22 +44,22 @@ test_that("Thyroid chi-square statistics match up published values", {
   expect_equal(2.88, round(do.call(obuchowski.test(), tc), 2))
 })
 
-test_that("count.contingency", {
-  expect_equal(4, which(1 == count.contingency.pair(0, 0))[[1]])
-  expect_equal(3, which(1 == count.contingency.pair(0, 1))[[1]])
-  expect_equal(2, which(1 == count.contingency.pair(1, 0))[[1]])
-  expect_equal(1, which(1 == count.contingency.pair(1, 1))[[1]])
+test_that(".count.contingency", {
+  expect_equal(4, which(1 == .count.contingency.pair(0, 0))[[1]])
+  expect_equal(3, which(1 == .count.contingency.pair(0, 1))[[1]])
+  expect_equal(2, which(1 == .count.contingency.pair(1, 0))[[1]])
+  expect_equal(1, which(1 == .count.contingency.pair(1, 1))[[1]])
   
-  expect_equal(4, which(1 == count.contingency.pair(FALSE, FALSE))[[1]])
-  expect_equal(3, which(1 == count.contingency.pair(FALSE, TRUE))[[1]])
-  expect_equal(2, which(1 == count.contingency.pair(TRUE, FALSE))[[1]])
-  expect_equal(1, which(1 == count.contingency.pair(TRUE, TRUE))[[1]])
+  expect_equal(4, which(1 == .count.contingency.pair(FALSE, FALSE))[[1]])
+  expect_equal(3, which(1 == .count.contingency.pair(FALSE, TRUE))[[1]])
+  expect_equal(2, which(1 == .count.contingency.pair(TRUE, FALSE))[[1]])
+  expect_equal(1, which(1 == .count.contingency.pair(TRUE, TRUE))[[1]])
   
   df <- data.frame(t1 = c(0, 0, 1, 1), t2 = c(0, 1, 0, 1))
-  all(count.contingency(df[1], df[2]) == c(1, 1, 1, 1))
+  all(.count.contingency(df[1], df[2]) == c(1, 1, 1, 1))
   
   df.rep <- df[rep(1:4, times=1:4),]
-  all(count.contingency(t1 = df.rep[1], t2 = df.rep[2]) == 4:1)
+  all(.count.contingency(t1 = df.rep[1], t2 = df.rep[2]) == 4:1)
 })
 
 test_that("nested.to.contingency", {
