@@ -35,16 +35,25 @@ test_that("All tests work with all datasets", {
   apply.tests(data.frame(thyroids.contingencies), "thyroids")
 })
 
-test_that("count.contingency", {
-  expect_equal(4, which(1 == count.contingency.row(0, 0))[[1]])
-  expect_equal(3, which(1 == count.contingency.row(0, 1))[[1]])
-  expect_equal(2, which(1 == count.contingency.row(1, 0))[[1]])
-  expect_equal(1, which(1 == count.contingency.row(1, 1))[[1]])
+test_that("Thyroid chi-square statistics match up published values", {
+  tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
   
-  expect_equal(4, which(1 == count.contingency.row(FALSE, FALSE))[[1]])
-  expect_equal(3, which(1 == count.contingency.row(FALSE, TRUE))[[1]])
-  expect_equal(2, which(1 == count.contingency.row(TRUE, FALSE))[[1]])
-  expect_equal(1, which(1 == count.contingency.row(TRUE, TRUE))[[1]])
+  # McCarthy: Adjustment to the McNemar’s Test for the Analysis of Clustered Matched-Pair Data
+  expect_equal(4.5, do.call(.mcnemar.test, tc))
+  expect_equal(2.32, round(do.call(durkalski.test, tc), 2))
+  expect_equal(2.88, round(do.call(obuchowski.test(), tc), 2))
+})
+
+test_that("count.contingency", {
+  expect_equal(4, which(1 == count.contingency.pair(0, 0))[[1]])
+  expect_equal(3, which(1 == count.contingency.pair(0, 1))[[1]])
+  expect_equal(2, which(1 == count.contingency.pair(1, 0))[[1]])
+  expect_equal(1, which(1 == count.contingency.pair(1, 1))[[1]])
+  
+  expect_equal(4, which(1 == count.contingency.pair(FALSE, FALSE))[[1]])
+  expect_equal(3, which(1 == count.contingency.pair(FALSE, TRUE))[[1]])
+  expect_equal(2, which(1 == count.contingency.pair(TRUE, FALSE))[[1]])
+  expect_equal(1, which(1 == count.contingency.pair(TRUE, TRUE))[[1]])
   
   df <- data.frame(t1 = c(0, 0, 1, 1), t2 = c(0, 1, 0, 1))
   all(count.contingency(df[1], df[2]) == c(1, 1, 1, 1))

@@ -7,7 +7,7 @@
 \format{A data frame with 57 rows and 4 variables:
 \describe{
   \item{subject}{the ID of the study participant}
-  \item{question}{the ID of the question being answered}
+  \item{atom}{the type of obfuscation being evaluated}
   \item{control}{whether the subject answered the un-obfuscated question correctly}
   \item{treatment}{whether the subject answered the obfuscated question correctly}
 }}
@@ -25,7 +25,10 @@ Half of the questions was intentionally obfuscated to elicit confusion.
 \examples{
 data(obfuscation)
 
-oc <- paired.to.contingency(obfuscation[,c("subject", "atom")], obfuscation$control, obfuscation$treatment)
+oc <- paired.to.contingency(group = obfuscation[,c("subject", "atom")],
+                            t1    = obfuscation$control,
+                            t2    = obfuscation$treatment)
+
 durkalski.test(oc$ak, oc$bk, oc$ck, oc$dk)
 }
 \references{
