@@ -35,13 +35,26 @@ test_that("All tests work with all datasets", {
   apply.tests(data.frame(thyroids.contingencies), "thyroids")
 })
 
-test_that("Thyroid chi-square statistics match up published values", {
+test_that("Thyroid chi-square statistics match up with published values", {
   tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
   
-  expect_equal(4.5, do.call(.mcnemar.test, tc)) # Value reported by WF McCarthy (2007)
-  expect_equal(2.32, round(do.call(durkalski.test, tc), 2)) # Value reported by WF McCarthy (2007)
-  #expect_equal(2.88, round(do.call(obuchowski.test, tc), 2)) # Value reported by Obuchowski
-  expect_equal(2.8571429014, do.call(obuchowski.test, tc), tolerance=1e-7) # Value reported by Lieber & Ashley (1998)
+  expect_equal(3.66, round(do.call(eliasziw.test,   tc), 2)) # reported by Durkalski (2003)
+# expect_equal(2.88, round(do.call(obuchowski.test, tc), 2)) # reported by Obuchowski (1998)
+  expect_equal(2.86, round(do.call(obuchowski.test, tc), 2)) # reported by Durkalski (2003)
+  expect_equal(2.32, round(do.call(durkalski.test,  tc), 2)) # reported by Durkalski (2003)
+  expect_equal(3.13, round(do.call(yang.test,       tc), 2)) # reported by Yang (2010)
+  expect_equal(4.5,        do.call(.mcnemar.test,   tc))     # reported by Durkalski (2003)
+})
+
+test_that("Pyschiatry chi-square statistics match up with published values", {
+  pc <- psychiatry[, c('ah', 'bh', 'ch', 'dh')]
+  names(pc) <- c('ak', 'bk', 'ck', 'dk')
+  
+  expect_equal(10.23, round(do.call(eliasziw.test,  pc),  2)) # reported by Durkalski (2003)
+  expect_equal(7.19,  round(do.call(obuchowski.test, pc), 2)) # reported by Durkalski (2003)
+  expect_equal(7.542, round(do.call(durkalski.test,  pc), 3)) # reported by Durkalski (2003)
+  expect_equal(8.43,  round(do.call(yang.test,       pc), 2)) # reported by Yang (2010)
+  expect_equal(11.8451,     do.call(.mcnemar.test,   pc), 4)  # reported by Durkalski (2003)
 })
 
 test_that(".count.contingency", {

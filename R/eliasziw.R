@@ -1,5 +1,21 @@
-# Eliasziw & Donner 1991
-
+#' An implementation of Eliasziw & Donner 1991
+#'
+#' An adjustment to mcnemar's test for maginal homogeneity.
+#'
+#' @param ak Vector containing counts per group of Success/Success results.
+#' @param bk Vector containing counts per group of Success/Fail results.
+#' @param ck Vector containing counts per group of Fail/Success results.
+#' @param dk Vector containing counts per group of Fail/Fail results.
+#' 
+#' @return The chi-square statistic
+#'
+#' @examples
+#' 
+#' eliasziw.test(c(1,3,0,1,2), c(20,47,39,30,28), c(18,45,23,21,29), c(0,2,1,3,4))
+#' 
+#' pc <- psychiatry[, c('ah', 'bh', 'ch', 'dh')]
+#' eliasziw.test(pc$ah, pc$bh, pc$ch, pc$dh)
+#' 
 #' @export
 eliasziw.test <- function(ak, bk, ck, dk)
   .eliasziw.impl(data.frame(ak=ak,bk=bk,ck=ck,dk=dk))
