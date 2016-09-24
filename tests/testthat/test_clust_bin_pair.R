@@ -38,10 +38,10 @@ test_that("All tests work with all datasets", {
 test_that("Thyroid chi-square statistics match up published values", {
   tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
   
-  # McCarthy: Adjustment to the McNemar’s Test for the Analysis of Clustered Matched-Pair Data
-  expect_equal(4.5, do.call(.mcnemar.test, tc))
-  expect_equal(2.32, round(do.call(durkalski.test, tc), 2))
-  expect_equal(2.88, round(do.call(obuchowski.test(), tc), 2))
+  expect_equal(4.5, do.call(.mcnemar.test, tc)) # Value reported by WF McCarthy (2007)
+  expect_equal(2.32, round(do.call(durkalski.test, tc), 2)) # Value reported by WF McCarthy (2007)
+  #expect_equal(2.88, round(do.call(obuchowski.test, tc), 2)) # Value reported by Obuchowski
+  expect_equal(2.8571429014, do.call(obuchowski.test, tc), tolerance=1e-7) # Value reported by Lieber & Ashley (1998)
 })
 
 test_that(".count.contingency", {
