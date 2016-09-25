@@ -1,16 +1,16 @@
-#' clust.bin.pair: A package for clustered binary matched pair data
+#' clust.bin.pair: Statistical tests for clustered binary matched pair data
 #'
-#' The clust.bin.pair package privides statistical tests, and several utilities
+#' The clust.bin.pair package privides statistical tests and utilities
 #' for dealing with clustered binary matched pair data.
 #'
 #' @docType package
 #' @name clust.bin.pair
 NULL
 
-#' An implementation of Durkalski et al. 2003
+#' Statistical test for clustered matched pair data
 #'
-#' An adjustment to mcnemar's test for maginal homogeneity based on the method
-#' of moments
+#' A single interface for several adjustements to the mcnemar test for marginal
+#' homogeneity that correct for clustered data.
 #'
 #' @param ak Vector containing counts per group of Success/Success results.
 #' @param bk Vector containing counts per group of Success/Fail results.
@@ -29,13 +29,13 @@ NULL
 #' 
 #' @examples
 #' tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
-#' clust.bin.pair(tc$ak, tc$bk, tc$ck, tc$dk, method="obuchowski")
+#' clust.bin.pair.test(tc$ak, tc$bk, tc$ck, tc$dk, method="obuchowski")
 #' 
 #' pc <- psychiatry[, c('ah', 'bh', 'ch', 'dh')]
-#' clust.bin.pair(pc$ah, pc$bh, pc$ch, pc$dh, method="eliasziw")
+#' clust.bin.pair.test(pc$ah, pc$bh, pc$ch, pc$dh, method="eliasziw")
 #'
 #' @export
-clust.bin.pair <- function(ak, bk, ck, dk, method="yang") {
+clust.bin.pair.test <- function(ak, bk, ck, dk, method="yang") {
   data.name <-
     paste(list(deparse(substitute(ak)), deparse(substitute(bk)),
                deparse(substitute(ck)), deparse(substitute(dk))), collapse=", ")
