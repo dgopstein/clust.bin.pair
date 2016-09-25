@@ -1,13 +1,14 @@
-#' An implementation of Eliasziw & Donner 1991
+#' An implementation of Eliasziw and Donner 1991
 #'
-#' An adjustment to mcnemar's test for maginal homogeneity.
+#' An adjustment to mcnemar's test for maginal homogeneity based on the
+#' intracluster correlation coe cient (ICC).
 #'
 #' @param ak Vector containing counts per group of Success/Success results.
 #' @param bk Vector containing counts per group of Success/Fail results.
 #' @param ck Vector containing counts per group of Fail/Success results.
 #' @param dk Vector containing counts per group of Fail/Fail results.
 #' 
-#' @return The chi-square statistic
+#' @return Chi-square statistic
 #'
 #' @examples
 #' 
@@ -15,6 +16,13 @@
 #' 
 #' pc <- psychiatry[, c('ah', 'bh', 'ch', 'dh')]
 #' eliasziw.test(pc$ah, pc$bh, pc$ch, pc$dh)
+#' 
+#' tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
+#' eliasziw.test(tc$ak, tc$bk, tc$ck, tc$dk)
+#'
+#' oc <- paired.to.contingency(list(obfuscation$subject, obfuscation$atom),
+#'                             obfuscation$control, obfuscation$treatment)
+#' eliasziw.test(oc$ak, oc$bk, oc$ck, oc$dk)
 #' 
 #' @export
 eliasziw.test <- function(ak, bk, ck, dk)
