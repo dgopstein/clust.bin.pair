@@ -6,9 +6,8 @@
 #' @docType package
 #' @name clust.bin.pair
 NULL
-#> NULL
 
-#' #' An implementation of Durkalski et al. 2003
+#' An implementation of Durkalski et al. 2003
 #'
 #' An adjustment to mcnemar's test for maginal homogeneity based on the method
 #' of moments
@@ -28,12 +27,13 @@ NULL
 #' @field method the type of test applied.
 #' @field data.name a character string giving the names of the data.
 #' 
-#' @example
-#' clust.bin.pair(tc$ak, tc$bk, tc$ck, tc$dk, method="durkalski")
-#'
-#' @usage
-#' clust.bin.pair(ak, bk, ck, dk, method = c("yang", "durkalski", "obuchowski", "eliasziw"))
+#' @examples
+#' tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
+#' clust.bin.pair(tc$ak, tc$bk, tc$ck, tc$dk, method="obuchowski")
 #' 
+#' pc <- psychiatry[, c('ah', 'bh', 'ch', 'dh')]
+#' clust.bin.pair(pc$ah, pc$bh, pc$ch, pc$dh, method="eliasziw")
+#'
 #' @export
 clust.bin.pair <- function(ak, bk, ck, dk, method="yang") {
   data.name <-
@@ -58,7 +58,7 @@ clust.bin.pair <- function(ak, bk, ck, dk, method="yang") {
   statistic <- test(ak, bk, ck, dk)
   names(statistic) <- paste0(method.capitalized, " chi-square")
   
-  p.value <- 1 - pchisq(statistic, 1)  
+  p.value <- 1 - stats::pchisq(statistic, 1)  
   
   rval <- list(statistic = statistic,
                p.value = p.value,
