@@ -2,10 +2,10 @@
 #'
 #' An adjustment to mcnemar's test for maginal homogeneity.
 #'
-#' @param ak Vector containing counts per group of Success/Success results.
-#' @param bk Vector containing counts per group of Success/Fail results.
-#' @param ck Vector containing counts per group of Fail/Success results.
-#' @param dk Vector containing counts per group of Fail/Fail results.
+#' @param ak vector containing counts per group of Success/Success results.
+#' @param bk vector containing counts per group of Success/Failure results.
+#' @param ck vector containing counts per group of Failure/Success results.
+#' @param dk vector containing counts per group of Failure/Failure results.
 #' 
 #' @return Chi-square statistic
 #'

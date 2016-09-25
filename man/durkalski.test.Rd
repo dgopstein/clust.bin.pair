@@ -7,13 +7,13 @@
 durkalski.test(ak, bk, ck, dk)
 }
 \arguments{
-\item{ak}{Vector containing counts per group of Success/Success results.}
+\item{ak}{vector containing counts per group of Success/Success results.}
 
-\item{bk}{Vector containing counts per group of Success/Fail results.}
+\item{bk}{vector containing counts per group of Success/Failure results.}
 
-\item{ck}{Vector containing counts per group of Fail/Success results.}
+\item{ck}{vector containing counts per group of Failure/Success results.}
 
-\item{dk}{Vector containing counts per group of Fail/Fail results.}
+\item{dk}{vector containing counts per group of Failure/Failure results.}
 }
 \value{
 Chi-square statistic

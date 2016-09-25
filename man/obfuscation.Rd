@@ -20,7 +20,7 @@ data(obfuscation)
 \description{
 Data from Gopstein et. al.'s experiment on the misinterpretation of C code.
 Subjects were asked to hand evaluate pairs of functionally equivalent code.
-Half of the questions was intentionally obfuscated to elicit confusion.
+Half of the questions were intentionally obfuscated to elicit confusion.
 }
 \examples{
 data(obfuscation)
