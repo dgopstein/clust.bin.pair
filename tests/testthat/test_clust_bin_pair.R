@@ -2,6 +2,11 @@ library(clust.bin.pair)
 
 context("Top Level Functions")
 
+pc <- psychiatry[, c('ah', 'bh', 'ch', 'dh')]
+names(pc) <- c('ak', 'bk', 'ck', 'dk')
+
+tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
+
 test_that("McNemar scores datasets correctly", { 
   expect_equal(.mcnemar.impl(psychiatry$bh, psychiatry$ch), 11.85, tolerance=.1, scale=NULL, "psychiatry")
 }) 
@@ -36,8 +41,6 @@ test_that("All tests work with all datasets", {
 })
 
 test_that("Thyroid chi-square statistics match up with published values", {
-  tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
-  
   expect_equal(3.66, round(do.call(eliasziw.test,   tc), 2)) # reported by Durkalski (2003)
 # expect_equal(2.88, round(do.call(obuchowski.test, tc), 2)) # reported by Obuchowski (1998)
   expect_equal(2.86, round(do.call(obuchowski.test, tc), 2)) # reported by Durkalski (2003)
@@ -47,9 +50,6 @@ test_that("Thyroid chi-square statistics match up with published values", {
 })
 
 test_that("Pyschiatry chi-square statistics match up with published values", {
-  pc <- psychiatry[, c('ah', 'bh', 'ch', 'dh')]
-  names(pc) <- c('ak', 'bk', 'ck', 'dk')
-  
   expect_equal(10.23, round(do.call(eliasziw.test,  pc),  2)) # reported by Durkalski (2003)
   expect_equal(7.19,  round(do.call(obuchowski.test, pc), 2)) # reported by Durkalski (2003)
   expect_equal(7.542, round(do.call(durkalski.test,  pc), 3)) # reported by Durkalski (2003)
@@ -107,4 +107,16 @@ test_that("paired.to.contingency", {
                          (obfuscation.unpaired$subject == 3 & obfuscation.unpaired$atom == "POST_INC_DEC"),]
   
   expect_true(all(obfuscation.expected == obfuscation.res), info = "paired.to.contingency works for obfuscation")
+})
+
+test_that("clust.bin.pair function", {
+  tests <- c("yang", "durkalski", "obuchowski", "eliasziw")
+  
+  tc.stats <- sapply(tests, function(test) do.call(paste0(test, ".test"), tc))
+  expect_equal(c(3.13, 2.32, 2.86, 3.66), unname(round(tc.stats, 2)))
+
+  pc.stats <- sapply(tests, function(test) do.call(paste0(test, ".test"), pc))
+  expect_equal(c(8.43, 7.54, 7.19, 10.23), unname(round(pc.stats, 2)))
+  
+  expect_error(corr.bin.pair(1, 2, 3, 4, method="xxx"), "method")
 })
