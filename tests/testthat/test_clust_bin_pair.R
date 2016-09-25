@@ -118,5 +118,5 @@ test_that("clust.bin.pair function", {
   pc.stats <- sapply(tests, function(test) do.call(paste0(test, ".test"), pc))
   expect_equal(c(8.43, 7.54, 7.19, 10.23), unname(round(pc.stats, 2)))
   
-  expect_error(corr.bin.pair(1, 2, 3, 4, method="xxx"), "method")
+  expect_error(clust.bin.pair(1, 2, 3, 4, method="xxx"), "method")
 })
