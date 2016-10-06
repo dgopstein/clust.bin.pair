@@ -109,15 +109,22 @@ test_that("paired.to.contingency", {
   expect_true(all(obfuscation.expected == obfuscation.res), info = "paired.to.contingency works for obfuscation")
 })
 
+test_that("is.whole", {
+  expect_true( .is.whole(c(1, 2, 3, 4)))
+  expect_false(.is.whole(c(1, 2, 3, 4.5)))
+  expect_false(.is.whole(c(1.2, 2, 3, 4)))
+})
+
 test_that("clust.bin.pair", {
-  tests <- c("yang", "durkalski", "obuchowski", "eliasziw")
+  tests <- c("yang", "durkalski", "obuchowski", "eliasziw", "mcnemar")
   
   tc.stats <- sapply(tests, function(test) clust.bin.pair(tc$ak, tc$bk, tc$ck, tc$dk, method=test)$statistic)
-  expect_equal(c(3.13, 2.32, 2.86, 3.66), unname(round(tc.stats, 2)))
+  expect_equal(c(3.13, 2.32, 2.86, 3.66, 4.5), unname(round(tc.stats, 2)))
 
   pc.stats <- sapply(tests, function(test) clust.bin.pair(pc$ak, pc$bk, pc$ck,pc$dk, method=test)$statistic)
-  expect_equal(c(8.43, 7.54, 7.19, 10.23), unname(round(pc.stats, 2)))
+  expect_equal(c(8.43, 7.54, 7.19, 10.23, 11.85), unname(round(pc.stats, 2)))
   
   expect_error(clust.bin.pair(1, 2, 3, 4, method="xxx"), "method")
   expect_error(clust.bin.pair(1, 2, 3, c(4, 5)), "length")
+  expect_error(clust.bin.pair(1, 2, 3, 4.5), "integer")
 })

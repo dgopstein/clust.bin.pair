@@ -28,23 +28,24 @@
 #'
 #' @export
 clust.bin.pair <- function(ak, bk, ck, dk, method="yang") {
-  choises <- c("yang", "durkalski", "obuchowski", "eliasziw")
-  method <- choises[pmatch(method, choises)]
+  choices <- c("yang", "durkalski", "obuchowski", "eliasziw", "mcnemar")
+  method <- choices[pmatch(method, choices)]
   
   if (length(method) > 1 || is.na(method)) 
-    stop(paste0("method must be one of ", deparse(choises)))
+    stop(paste0("method must be one of ", deparse(choices)))
   
   if (length(unique(sapply(list(ak, bk, ck, dk), length))) != 1)
     stop("ak, bk, ck, and dk must all be vectors of identical length")
   
-  if (!is.integer(ak, bk, ck, dk)) # is integer
+  if (!.is.whole(c(ak, bk, ck, dk))) # is integer
     stop("ak, bk, ck, and dk must all be integer vectors")
     
   test <- switch (method,
     yang       = yang.test,
     durkalski  = durkalski.test,
     obuchowski = obuchowski.test,
-    eliasziw   = eliasziw.test)
+    eliasziw   = eliasziw.test,
+    mcnemar    = .mcnemar.test)
   
   data.name <-
     paste(list(deparse(substitute(ak)), deparse(substitute(bk)),
@@ -61,7 +62,7 @@ clust.bin.pair <- function(ak, bk, ck, dk, method="yang") {
   
   p.value <- 1 - stats::pchisq(statistic, 1)  
   
- rval <- list(statistic = statistic,
+  rval <- list(statistic = statistic,
                parameter = parameter, 
                p.value = p.value,
                method = method.name,
