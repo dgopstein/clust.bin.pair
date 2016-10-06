@@ -21,10 +21,10 @@
 #'
 #' @keywords datasets
 #'
-#' @references Obuchowski 1998
-#'
-#' @source Obuchowski 1998
-#'
+#' @source 
+#' 
+#' Obuchowski, N. A. (1998). \emph{On the comparison of correlated proportions for clustered data}. Statistics in medicine, 17(13), 1495-1507.
+#' 
 #' @examples
 #' data(thyroids)
 #' 

@@ -1,4 +1,4 @@
-#' An implementation of Eliasziw and Donner 1991
+# An implementation of Eliasziw and Donner 1991
 
 .eliasziw.test <- function(ak, bk, ck, dk)
   .eliasziw.impl(data.frame(ak=ak,bk=bk,ck=ck,dk=dk))

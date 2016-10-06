@@ -31,8 +31,5 @@ oc <- paired.to.contingency(group = obfuscation[,c("subject", "atom")],
 
 clust.bin.pair(oc$ak, oc$bk, oc$ck, oc$dk, method="durkalski")
 }
-\references{
-Gopstein et al. (2016)
-}
 \keyword{datasets}
 

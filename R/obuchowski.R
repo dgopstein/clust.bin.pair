@@ -1,4 +1,4 @@
-#' An implementation of Obuchowski 1998
+# An implementation of Obuchowski 1998
 
 .obuchowski.test <- function(ak, bk, ck, dk) .obuchowski.impl(bk, ck)
 

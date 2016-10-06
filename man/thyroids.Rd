@@ -14,7 +14,7 @@
   \item{x.spect}{individual results per gland from the SPECT test}
 }}
 \source{
-Obuchowski 1998
+Obuchowski, N. A. (1998). \emph{On the comparison of correlated proportions for clustered data}. Statistics in medicine, 17(13), 1495-1507.
 }
 \usage{
 data(thyroids)
@@ -39,9 +39,6 @@ tc <- nested.to.contingency(thyroids$x.pet, thyroids$x.spect)
 clust.bin.pair(tc[,'ak'], tc[,'bk'], tc[,'ck'], tc[,'dk'], method="obuchowski")
 
 do.call(clust.bin.pair, data.frame(tc))
-}
-\references{
-Obuchowski 1998
 }
 \keyword{datasets}
 

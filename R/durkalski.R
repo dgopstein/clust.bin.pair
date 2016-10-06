@@ -1,4 +1,4 @@
-#' An implementation of Durkalski et al. 2003
+# An implementation of Durkalski et al. 2003
 
 .durkalski.test <- function(ak, bk, ck, dk)
   .durkalski.impl(ak+bk+ck+dk, bk, ck)

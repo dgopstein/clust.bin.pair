@@ -24,10 +24,13 @@
 #'
 #' @keywords datasets
 #'
-#' @references Petryshen 1988
-#' @references Eliasziw 1991
+#' @references
+#' 
+#' Eliasziw, M., & Donner, A. (1991). \emph{Application of the McNemar test to non‐independent matched pair data}. Statistics in medicine, 10(12), 1981-1991.
 #'
-#' @source Petryshen
+#' @source
+#' 
+#' Donner, A., & Petryshen, P. (1989). \emph{The statistical analysis of matched data in psychiatric research}. Psychiatry research, 28(1), 41-46.
 #'
 #' @examples
 #' data(psychiatry)

@@ -1,4 +1,4 @@
-#' An implementation of Yang et al. 2010
+# An implementation of Yang et al. 2010
 
 .yang.test <- function(ak, bk, ck, dk)
   .yang.impl(ak+bk+ck+dk, bk, ck)

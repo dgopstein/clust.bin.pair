@@ -18,8 +18,6 @@
 #'
 #' @keywords datasets
 #'
-#' @references Gopstein et al. (2016)
-#'
 #' @source \href{http://atomsofconfusion.com}{Atoms of Confusion}
 #'
 #' @examples

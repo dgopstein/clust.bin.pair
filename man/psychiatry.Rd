@@ -15,7 +15,7 @@
   \item{Wh}{Normalized difference: (bh - ch) / Nh}
 }}
 \source{
-Petryshen
+Donner, A., & Petryshen, P. (1989). \emph{The statistical analysis of matched data in psychiatric research}. Psychiatry research, 28(1), 41-46.
 }
 \usage{
 data(psychiatry)
@@ -36,9 +36,7 @@ psychiatry$Wh == round((psychiatry$bh - psychiatry$ch) / psychiatry$Nh, 2)
 clust.bin.pair(psychiatry$ah, psychiatry$bh, psychiatry$ch, psychiatry$dh, method="eliasziw")
 }
 \references{
-Petryshen 1988
-
-Eliasziw 1991
+Eliasziw, M., & Donner, A. (1991). \emph{Application of the McNemar test to non‐independent matched pair data}. Statistics in medicine, 10(12), 1981-1991.
 }
 \keyword{datasets}
 
