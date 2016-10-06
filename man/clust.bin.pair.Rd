@@ -16,7 +16,8 @@ clust.bin.pair(ak, bk, ck, dk, method = "yang")
 \item{dk}{vector containing counts per group of Failure/Failure results.}
 
 \item{method}{a character string specifying the method to calculate the
-statistic. Must be one of "yang" (default), "durkalski", "obuchowski", "eliasziw".}
+statistic. Must be one of "yang" (default), "durkalski", "obuchowski", "eliasziw".
+A value of "mcnemar" can also be supplied for comparison.}
 }
 \value{
 A list with class "htest" containing the following components:

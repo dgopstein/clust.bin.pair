@@ -29,7 +29,7 @@ oc <- paired.to.contingency(group = obfuscation[,c("subject", "atom")],
                             t1    = obfuscation$control,
                             t2    = obfuscation$treatment)
 
-durkalski.test(oc$ak, oc$bk, oc$ck, oc$dk)
+clust.bin.pair(oc$ak, oc$bk, oc$ck, oc$dk, method="durkalski")
 }
 \references{
 Gopstein et al. (2016)

@@ -33,7 +33,7 @@ data(psychiatry)
 
 psychiatry$Wh == round((psychiatry$bh - psychiatry$ch) / psychiatry$Nh, 2)
 
-eliasziw.test(psychiatry$ah, psychiatry$bh, psychiatry$ch, psychiatry$dh)
+clust.bin.pair(psychiatry$ah, psychiatry$bh, psychiatry$ch, psychiatry$dh, method="eliasziw")
 }
 \references{
 Petryshen 1988

@@ -9,6 +9,7 @@
 #' @param dk vector containing counts per group of Failure/Failure results.
 #' @param method a character string specifying the method to calculate the
 #' statistic. Must be one of "yang" (default), "durkalski", "obuchowski", "eliasziw".
+#' A value of "mcnemar" can also be supplied for comparison.
 #' 
 #' @return
 #' A list with class "htest" containing the following components:
@@ -41,10 +42,10 @@ clust.bin.pair <- function(ak, bk, ck, dk, method="yang") {
     stop("ak, bk, ck, and dk must all be integer vectors")
     
   test <- switch (method,
-    yang       = yang.test,
-    durkalski  = durkalski.test,
-    obuchowski = obuchowski.test,
-    eliasziw   = eliasziw.test,
+    yang       = .yang.test,
+    durkalski  = .durkalski.test,
+    obuchowski = .obuchowski.test,
+    eliasziw   = .eliasziw.test,
     mcnemar    = .mcnemar.test)
   
   data.name <-

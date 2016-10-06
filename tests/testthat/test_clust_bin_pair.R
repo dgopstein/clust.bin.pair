@@ -12,7 +12,7 @@ test_that("McNemar scores datasets correctly", {
 }) 
 
 apply.tests <- function (x, x.name) {
-  tests <- c(.mcnemar.test, eliasziw.test, obuchowski.test, durkalski.test, yang.test)
+  tests <- c(.mcnemar.test, .eliasziw.test, .obuchowski.test, .durkalski.test, .yang.test)
   res <- sapply(tests, function(t) do.call(t, list(ak=x$ak, bk=x$bk, ck=x$ck, dk=x$dk)))
   names(res) <- c("mcnemar", "eliasziw", "obuchowski", "durkalski", "yang")
   
@@ -41,19 +41,19 @@ test_that("All tests work with all datasets", {
 })
 
 test_that("Thyroid chi-square statistics match up with published values", {
-  expect_equal(3.66, round(do.call(eliasziw.test,   tc), 2)) # reported by Durkalski (2003)
-# expect_equal(2.88, round(do.call(obuchowski.test, tc), 2)) # reported by Obuchowski (1998)
-  expect_equal(2.86, round(do.call(obuchowski.test, tc), 2)) # reported by Durkalski (2003)
-  expect_equal(2.32, round(do.call(durkalski.test,  tc), 2)) # reported by Durkalski (2003)
-  expect_equal(3.13, round(do.call(yang.test,       tc), 2)) # reported by Yang (2010)
+  expect_equal(3.66, round(do.call(.eliasziw.test,   tc), 2)) # reported by Durkalski (2003)
+# expect_equal(2.88, round(do.call(.obuchowski.test, tc), 2)) # reported by Obuchowski (1998)
+  expect_equal(2.86, round(do.call(.obuchowski.test, tc), 2)) # reported by Durkalski (2003)
+  expect_equal(2.32, round(do.call(.durkalski.test,  tc), 2)) # reported by Durkalski (2003)
+  expect_equal(3.13, round(do.call(.yang.test,       tc), 2)) # reported by Yang (2010)
   expect_equal(4.5,        do.call(.mcnemar.test,   tc))     # reported by Durkalski (2003)
 })
 
 test_that("Pyschiatry chi-square statistics match up with published values", {
-  expect_equal(10.23, round(do.call(eliasziw.test,  pc),  2)) # reported by Durkalski (2003)
-  expect_equal(7.19,  round(do.call(obuchowski.test, pc), 2)) # reported by Durkalski (2003)
-  expect_equal(7.542, round(do.call(durkalski.test,  pc), 3)) # reported by Durkalski (2003)
-  expect_equal(8.43,  round(do.call(yang.test,       pc), 2)) # reported by Yang (2010)
+  expect_equal(10.23, round(do.call(.eliasziw.test,  pc),  2)) # reported by Durkalski (2003)
+  expect_equal(7.19,  round(do.call(.obuchowski.test, pc), 2)) # reported by Durkalski (2003)
+  expect_equal(7.542, round(do.call(.durkalski.test,  pc), 3)) # reported by Durkalski (2003)
+  expect_equal(8.43,  round(do.call(.yang.test,       pc), 2)) # reported by Yang (2010)
   expect_equal(11.8451,     do.call(.mcnemar.test,   pc), 4)  # reported by Durkalski (2003)
 })
 

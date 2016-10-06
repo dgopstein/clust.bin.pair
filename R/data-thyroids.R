@@ -36,8 +36,8 @@
 #' 
 #' tc <- nested.to.contingency(thyroids$x.pet, thyroids$x.spect)
 #'
-#' obuchowski.test(tc[,'ak'], tc[,'bk'], tc[,'ck'], tc[,'dk'])
+#' clust.bin.pair(tc[,'ak'], tc[,'bk'], tc[,'ck'], tc[,'dk'], method="obuchowski")
 #' 
-#' do.call(obuchowski.test, data.frame(tc))
+#' do.call(clust.bin.pair, data.frame(tc))
 
 "thyroids"

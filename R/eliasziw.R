@@ -1,31 +1,6 @@
 #' An implementation of Eliasziw and Donner 1991
-#'
-#' An adjustment to mcnemar's test for maginal homogeneity based on the
-#' intracluster correlation coe cient (ICC).
-#'
-#' @param ak vector containing counts per group of Success/Success results.
-#' @param bk vector containing counts per group of Success/Failure results.
-#' @param ck vector containing counts per group of Failure/Success results.
-#' @param dk vector containing counts per group of Failure/Failure results.
-#' 
-#' @return Chi-square statistic
-#'
-#' @examples
-#' 
-#' eliasziw.test(c(1,3,0,1,2), c(20,47,39,30,28), c(18,45,23,21,29), c(0,2,1,3,4))
-#' 
-#' pc <- psychiatry[, c('ah', 'bh', 'ch', 'dh')]
-#' eliasziw.test(pc$ah, pc$bh, pc$ch, pc$dh)
-#' 
-#' tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
-#' eliasziw.test(tc$ak, tc$bk, tc$ck, tc$dk)
-#'
-#' oc <- paired.to.contingency(list(obfuscation$subject, obfuscation$atom),
-#'                             obfuscation$control, obfuscation$treatment)
-#' eliasziw.test(oc$ak, oc$bk, oc$ck, oc$dk)
-#' 
-#' @export
-eliasziw.test <- function(ak, bk, ck, dk)
+
+.eliasziw.test <- function(ak, bk, ck, dk)
   .eliasziw.impl(data.frame(ak=ak,bk=bk,ck=ck,dk=dk))
 
 .eliasziw.impl <- function (abcd) {
