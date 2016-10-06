@@ -2,7 +2,7 @@
 % Please edit documentation in R/clust.bin.pair.R
 \name{clust.bin.pair}
 \alias{clust.bin.pair}
-\title{Statistical test for clustered matched pair data}
+\title{Statistical test for clustered binary matched pair data}
 \usage{
 clust.bin.pair(ak, bk, ck, dk, method = "yang")
 }
