@@ -1,4 +1,4 @@
-#' Statistical test for clustered matched pair data
+#' Statistical test for clustered binary matched pair data
 #'
 #' A single interface for several adjustements to the mcnemar test for marginal
 #' homogeneity that correct for clustered data.
