@@ -1,8 +1,7 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Updated the LICENSE file to comply with the MIT template
-* Added links to the associated GitHub repository
+* Fixed various typos in documentation
 
 ## Test environments
 * OS X 10.11.5, R 3.3.1
