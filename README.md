@@ -39,3 +39,14 @@ Included is sample data from real world experiments of the form that can benefit
 - **Obfuscation**: Programmers were asked to hand-evaluate pairs of obfuscated and deobfuscated snippets of C source code. The data is tested to see whether or not programmers trace deobfuscated code any differently than obfuscated code.
 - **Psychiatry**: Psychiatrists and their patients were asked to evaluate the applicability of various concerns and treatments to the patient. The data is tested to see how well patient and doctor perception aligns.
 - **Thyroids**: Hyperparathyroidism patients were scanned using both PET and SPECT tests. The data is tested to evaluate the sensitivity and specificity of the two tomogoraphy tests.
+
+## Installation and Use
+
+You can install the latest development version from github:
+
+    install.packages("devtools")
+	devtools::install_github("dgopstein/clust.bin.pair")
+
+To use, load as follows:
+
+    library(clust.bin.pair)
