@@ -22,5 +22,5 @@ License components with restrictions and base license permitting such:
   MIT + file LICENSE
 File 'LICENSE':
   YEAR: 2016
-  COPYRIGHT HOLDER: Dan Gopsteincom>Maintainer: 
+  COPYRIGHT HOLDER: Dan Gopstein
 
