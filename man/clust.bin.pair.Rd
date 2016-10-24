@@ -28,7 +28,7 @@ A list with class "htest" containing the following components:
 \item{data.name}{a character string giving the names of the data.}
 }
 \description{
-A single interface for several adjustements to the mcnemar test for marginal
+A single interface for several adjustments to the mcnemar test for marginal
 homogeneity that correct for clustered data.
 }
 \examples{

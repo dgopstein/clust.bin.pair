@@ -1,7 +1,7 @@
-#' Pyschiatrist and patient disagreement data
+#' Psychiatrist and patient disagreement data
 #'
 #' Psychiatrists and their patients were surveyed in pairs regarding patient
-#' concerns and treatment. Each psychiatrist was asked whether each quesition
+#' concerns and treatment. Each psychiatrist was asked whether each question
 #' item was relevant to their patient and each of their patients were asked the
 #' same. The data can be evaluated to answer the question of whether there was
 #' patient/doctor agreement in each item. The sample was 29 psychiatrists, each
@@ -13,7 +13,7 @@
 #'
 #' @format A data frame with 29 rows and 7 variables:
 #' \describe{
-#'   \item{psychiatrist}{the ID of the pyschiatrist}
+#'   \item{psychiatrist}{the ID of the psychiatrist}
 #'   \item{Nh}{the number of the psychiatrist's patients participating in the experiment}
 #'   \item{ah}{both participants answered 1}
 #'   \item{bh}{patient answered 1, psychiatrist answered 0}
