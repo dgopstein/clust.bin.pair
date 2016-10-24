@@ -24,7 +24,7 @@ This package contains 5 statistical tests suitable for analyzing clustered binar
 (http://onlinelibrary.wiley.com/doi/10.1002/sim.4780101211/full)
 - **Obuchowski**:
 [Obuchowski, Nancy A. 1998. "On the comparison of correlated proportions for clustered data." *Statistics in medicine*.]
-(http://onlinelibrary.wiley.com/doi/10.1002/(SICI)1097-0258(19980715)17:13%3C1495::AID-SIM863%3E3.0.CO;2-I/full)
+(http://onlinelibrary.wiley.com/doi/10.1002/%28SICI%291097-0258%2819980715%2917%3A13%3C1495%3A%3AAID-SIM863%3E3.0.CO;2-I/full)
 - **Durkalski**:
 [Durkalski, Valerie L., Yuko Y. Palesch, Stuart R. Lipsitz, and Philip F. Rust. 2003. "Analysis of clustered matched‐pair data." *Statistics in medicine*.]
 (http://onlinelibrary.wiley.com/doi/10.1002/sim.1438/full)
