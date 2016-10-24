@@ -7,11 +7,11 @@ Statistical tools for analyzing clustered binary matched-pair data in R.
 The tests and tools included in this package work primarily on clustered binary matched-pair data. In order for data to be a good fit for analysis with these tools it needs to have the following three properties:
 
 - **Clustered** (aka *correlated*, *non-independent*): Multiple samples drawn from the same distribution. 
- - i.e. Measure multiple teeth from each of several dental patients. The teeth of one patient are more likely to be similar than the teeth of different patients.
+ - e.g. Measurements of multiple teeth from each of several dental patients. The teeth of one patient are more likely to be similar than the teeth of different patients.
 - **Binary** (aka *dichotomous*): Results that are dichotomous.
- - i.e. the values may be true/false, yes/no, success/failure, missing/present, etc.
-- **Matched-pair**: Data points that come in pairs. Often from successive trials in a repeated measures experiment or from measuring two different sources.
- - i.e. eyes measured before and after surgery or the opinions of a doctor and her patient on the patient's progress.
+ - e.g. Values like true/false, yes/no, success/failure, missing/present, etc.
+- **Matched-pair**: Data points that come in pairs. Often from successive trials in a repeated measures experiment or from measuring two different, but correlated, sources.
+ - e.g. Eyes measured before and after surgery or the opinions of a doctor and her patient on the patient's progress.
 
 ### Tests
 This package contains 5 statistical tests suitable for analyzing clustered binary matched-pair data in various contexts. Four of the tests are designed specifically for this type of data. The fifth test, McNemar's test is the conceptual predecessor to each of the other tests, and is included for comparison. In practice, McNemar's test is specifically noted to be unsuitable for clustered data. The tests are listed below, along with the articles which introduce them:
@@ -42,7 +42,7 @@ Included is sample data from real world experiments of the form that can benefit
 
 ## Installation and Use
 
-You can install the latest development version from github:
+You can install the latest development version from GitHub:
 
     install.packages("devtools")
 	devtools::install_github("dgopstein/clust.bin.pair")
