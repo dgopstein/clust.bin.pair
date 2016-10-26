@@ -1,11 +1,12 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Fixed various typos in documentation
+* Removed non-ascii dashes
 
 ## Test environments
-* OS X 10.11.5, R 3.3.1
-* ubuntu 16.04, R 3.3.1
+* OS X 10.11.5, R 3.4.0
+* ubuntu 16.04, R 3.4.0
+* win-builder,  R 3.4.0
 
 ## R CMD check results
 There were no ERRORs or WARNINGs.

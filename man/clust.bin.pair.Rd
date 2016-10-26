@@ -43,12 +43,12 @@ clust.bin.pair(pc$ah, pc$bh, pc$ch, pc$dh, method="eliasziw")
 \references{
 McNemar, Q. (1947). \emph{Note on the sampling error of the difference between correlated proportions or percentages}. Psychometrika, 12(2), 153-157.
 
-Eliasziw, M., & Donner, A. (1991). \emph{Application of the McNemar test to non‐independent matched pair data}. Statistics in medicine, 10(12), 1981-1991.
+Eliasziw, M., & Donner, A. (1991). \emph{Application of the McNemar test to non-independent matched pair data}. Statistics in medicine, 10(12), 1981-1991.
 
 Obuchowski, N. A. (1998). \emph{On the comparison of correlated proportions for clustered data}. Statistics in medicine, 17(13), 1495-1507.
 
-Durkalski, V. L., Palesch, Y. Y., Lipsitz, S. R., & Rust, P. F. (2003). \emph{Analysis of clustered matched‐pair data}. Statistics in medicine, 22(15), 2417-2428.
+Durkalski, V. L., Palesch, Y. Y., Lipsitz, S. R., & Rust, P. F. (2003). \emph{Analysis of clustered matched-pair data}. Statistics in medicine, 22(15), 2417-2428.
 
-Yang, Z., Sun, X., & Hardin, J. W. (2010). \emph{A note on the tests for clustered matched‐pair binary data}. Biometrical journal, 52(5), 638-652.
+Yang, Z., Sun, X., & Hardin, J. W. (2010). \emph{A note on the tests for clustered matched-pair binary data}. Biometrical journal, 52(5), 638-652.
 }
 
