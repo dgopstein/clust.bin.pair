@@ -42,10 +42,9 @@ Included is sample data from real world experiments of the form that can benefit
 
 ## Installation and Use
 
-You can install the latest development version from GitHub:
+You can install the latest release from CRAN:
 
-    install.packages("devtools")
-	devtools::install_github("dgopstein/clust.bin.pair")
+    install.packages("clust.bin.pair")
 
 To use, load as follows:
 
