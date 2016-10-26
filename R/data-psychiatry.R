@@ -26,7 +26,7 @@
 #'
 #' @references
 #' 
-#' Eliasziw, M., & Donner, A. (1991). \emph{Application of the McNemar test to non‐independent matched pair data}. Statistics in medicine, 10(12), 1981-1991.
+#' Eliasziw, M., & Donner, A. (1991). \emph{Application of the McNemar test to non-independent matched pair data}. Statistics in medicine, 10(12), 1981-1991.
 #'
 #' @source
 #' 
