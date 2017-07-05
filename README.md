@@ -8,9 +8,9 @@ The tests and tools included in this package work primarily on clustered binary 
 
 - **Clustered** (aka *correlated*, *non-independent*): Multiple samples drawn from the same distribution. 
   - e.g. Measurements of multiple teeth from each of several dental patients. The teeth of one patient are more likely to be similar than the teeth of different patients.
-- **Binary** (aka *dichotomous*): Results that are dichotomous.
+- **Binary** (aka *dichotomous*): Results that can have only two discrete values.
   - e.g. Values like true/false, yes/no, success/failure, missing/present, etc.
-- **Matched-pair**: Data points that come in pairs. Often from successive trials in a repeated measures experiment or from measuring two different, but correlated, sources.
+- **Matched-pair**: Data points that come in pairs. Often from successive trials in a repeated measures experiment or from measuring two different, but related, sources.
   - e.g. Eyes measured before and after surgery or the opinions of a doctor and her patient on the patient's progress.
 
 ### Tests
