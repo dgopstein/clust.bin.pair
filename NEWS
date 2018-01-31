@@ -1,0 +1,6 @@
+clust.bin.pair v0.1.0 (Release date: 2017-01-31)
+==============
+
+  Changes:
+
+  * nested.to.contingency() now returns a data.frame
