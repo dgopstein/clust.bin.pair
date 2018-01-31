@@ -8,7 +8,7 @@ names(pc) <- c('ak', 'bk', 'ck', 'dk')
 tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
 
 test_that("McNemar scores datasets correctly", { 
-  expect_equal(.mcnemar.impl(psychiatry$bh, psychiatry$ch), 11.85, tolerance=.1, scale=NULL, "psychiatry")
+  expect_equal(.mcnemar.impl(psychiatry$bh, psychiatry$ch), 11.85, tolerance=.1, scale=NULL, info="psychiatry")
 }) 
 
 apply.tests <- function (x, x.name) {
