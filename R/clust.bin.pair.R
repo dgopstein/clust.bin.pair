@@ -35,7 +35,7 @@
 #'
 #' with(psychiatry, clust.bin.pair(ah, bh, ch, dh, method="eliasziw"))
 #'
-#' tc <- data.frame(nested.to.contingency(thyroids$x.pet, thyroids$x.spect))
+#' tc <- nested.to.contingency(thyroids$x.pet, thyroids$x.spect)
 #' clust.bin.pair(tc$ak, tc$bk, tc$ck, tc$dk, method="obuchowski")
 #'
 #' oc <- with(obfuscation, paired.to.contingency(group = list(subject, atom),

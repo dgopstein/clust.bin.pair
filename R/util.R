@@ -6,14 +6,14 @@
 #' @param group List of grouping values
 #' @param t1 pre-treatment measures
 #' @param t2 post-treatment measures
-#' 
+#'
 #' @return Contingency tables represented in the rows of a matrix
 #'
 #' @examples
 #'
 #' paired.to.contingency(list(obfuscation$subject, obfuscation$atom),
 #'                       obfuscation$control, obfuscation$treatment)
-#' 
+#'
 #' @export
 paired.to.contingency <- function(group, t1, t2)
   stats::aggregate(t(mapply(.count.contingency.pair, t1, t2)), by=group, FUN=sum)
@@ -25,16 +25,16 @@ paired.to.contingency <- function(group, t1, t2)
 #'
 #' @param t1 lists of pre-treatment measures
 #' @param t2 lists of post-treatment measures
-#' 
+#'
 #' @return Contingency tables represented in the rows of a matrix
 #'
 #' @examples
 #'
 #' nested.to.contingency(thyroids$x.pet, thyroids$x.spect)
-#' 
+#'
 #' @export
 nested.to.contingency <- function(t1, t2)
-  t(apply(cbind(t1, t2), 1, function(x) .count.contingency(x[1], x[2])))
+  data.frame(t(apply(cbind(t1, t2), 1, function(x) .count.contingency(x[1], x[2]))))
 
 # fill a vector [ak, bk, ck, dk] with the counts from matched pair data [t1, t2]
 .count.contingency <- function(t1, t2)
