@@ -37,7 +37,7 @@ Included is sample data from real world experiments of the form that can benefit
 
 ## Documentation
 
-Description of functions as well as usage examples are available in the [reference manual](https://cran.r-project.org/web/packages/clust.bin.pair/clust.bin.pair.pdf).
+Description of functions as well as usage examples are available in the [reference manual](https://cran.r-project.org/package=clust.bin.pair/clust.bin.pair.pdf).
 
 ## Installation and Use
 
