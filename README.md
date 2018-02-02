@@ -21,7 +21,7 @@ This package contains 5 statistical tests suitable for analyzing clustered binar
 - **Eliasziw**:
 [Eliasziw, Michael, and Allan Donner. 1991. "Application of the McNemar test to non‐independent matched pair data." *Statistics in medicine*.](https://dx.doi.org/10.1002/sim.4780101211)
 - **Obuchowski**:
-[Obuchowski, Nancy A. 1998. "On the comparison of correlated proportions for clustered data." *Statistics in medicine*.](https://dx.doi.org/10.1002/(SICI)1097-0258(19980715)17:13<1495::AID-SIM863>3.0.CO;2-I)
+[Obuchowski, Nancy A. 1998. "On the comparison of correlated proportions for clustered data." *Statistics in medicine*.](https://dx.doi.org/10.1002/(SICI)1097-0258(19980715)17:13%3C1495::AID-SIM863%3E3.0.CO;2-I)
 - **Durkalski**:
 [Durkalski, Valerie L., Yuko Y. Palesch, Stuart R. Lipsitz, and Philip F. Rust. 2003. "Analysis of clustered matched‐pair data." *Statistics in medicine*.](https://dx.doi.org/10.1002/sim.1438)
 - **Yang**:
