@@ -10,3 +10,14 @@ This is a resubmission. In this version I have:
 
 ## R CMD check results
 There were no ERRORs or WARNINGs or NOTEs.
+
+There was 1 NOTE:
+
+Possibly mis-spelled words in DESCRIPTION:
+  Durkalski (10:3)
+  Eliasziw (8:9)
+  McNemar (11:37)
+  Obuchowski (8:55, 14:50)
+  Petryshen (14:65)
+  
+These are names, all of which are correctly spelled.
