@@ -11,8 +11,8 @@ Description: Tests, utilities, and case studies for analyzing significance in
   <doi:10.1002/bimj.201000035> with McNemar (1947) <doi:10.1007/BF02295996>
   included for comparison. The utility functions nested.to.contingency and
   paired.to.contingency convert data between various useful formats. Thyroids
-  and psychiatry are the canonical datasets from Obuchowski and Petryshen
-  respectively.
+  and psychiatry are the canonical datasets from Obuchowski and Petryshen (1989)
+  <doi:10.1016/0165-1781(89)90196-0> respectively.
 Depends:
     R (>= 3.2.4)
 License: MIT + file LICENSE
