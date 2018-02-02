@@ -14,11 +14,11 @@ There were no ERRORs or WARNINGs.
 
 There was 1 NOTE:
 
-* Possibly mis-spelled words in DESCRIPTION:
-  Durkalski (7:62)
-  Eliasziw (7:40)
-  McNemar (7:87)
-  Obuchowski (7:50, 10:17)
-  Petryshen (10:32)
+Found the following (possibly) invalid DOIs:
+  DOI: 10.1002/(SICI)1097-0258(19980715)17:13<1495::AID-SIM863
+    From: DESCRIPTION
+    Status: Not Found
+    Message: 404
 
-  These are names, all of which are correctly spelled.
+This is the result of a parsing bug in check_package_CRAN_incoming when the
+DOI has a '>' character
