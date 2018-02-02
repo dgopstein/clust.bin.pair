@@ -1,3 +1,9 @@
+## Resubmission
+This is a resubmission. In this version I have:
+     
+* Updated CRAN URLs to be canonical
+* Added years and DOIs to references of implemented methods
+      
 ## Test environments
 * OS X 10.11.5, R 3.4.3
 * ubuntu 16.04, R 3.4.3
